@@ -1,0 +1,1946 @@
+<!doctype html>
+<html lang="pt-BR" data-kit-deck data-cliente="Bombril" data-logo-cliente="assets/01-oficina-1793383252963-bombril.png">
+<head>
+<style data-kit-deck-css="1.1.0">
+/* =====================================================================
+   KIT DE DECK 75 LAB · v1.1.0 (13/10/2026; 18/10/2026: transição, tela de peça e conceito)
+   Tirado do código dos decks feitos à mão que o Caique aprovou:
+   Parmalat Fit Hub (palco, corte de cinema, contador, abas, planta clicável,
+   cursor em dois tons, grão, lightbox) e Lactalis Food Service (cortina com
+   linha de varredura, cursor com rótulo, rota de capítulos).
+   O motor injeta este CSS no começo do <head> quando o deck tem
+   <html data-kit-deck>. Troque só os tokens --k-* pela marca do cliente.
+   Abaixo de 900 px quem manda é a base de celular da agência (deck-base).
+   ===================================================================== */
+:root{
+  --k-marca:#C0EE4E; --k-marca-2:#01A290; --k-marca-txt:#050505;
+  --k-tinta:#050505; --k-tinta-2:rgba(5,5,5,.62); --k-tinta-3:rgba(5,5,5,.38);
+  --k-papel:#F2F1E9; --k-papel-2:#E7E5DA; --k-escuro:#101013; --k-linha:rgba(5,5,5,.16);
+  --k-f-tit:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+  --k-f-txt:'Space Grotesk',system-ui,sans-serif;
+  --k-f-rot:'Space Mono',ui-monospace,Menlo,monospace;
+  --k-tit-caixa:uppercase; --k-raio:0px;
+  --k-e1:cubic-bezier(.19,1,.22,1); --k-e2:cubic-bezier(.76,0,.24,1); --k-e3:cubic-bezier(.34,1.56,.64,1);
+  --k-pad:88px;
+}
+*{box-sizing:border-box}
+html.k-js:not(.k-mob),html.k-js:not(.k-mob) body{height:100%;overflow:hidden;margin:0;background:#0b0b0d}
+body{margin:0;font-family:var(--k-f-txt);color:var(--k-tinta);-webkit-font-smoothing:antialiased}
+html.k-js:not(.k-mob) body.k-cur-on,html.k-js:not(.k-mob) body.k-cur-on button,html.k-js:not(.k-mob) body.k-cur-on a{cursor:none}
+img{max-width:100%}
+
+/* ---------- palco fixo 1600x900 (só a partir de 900 px) ---------- */
+html.k-js:not(.k-mob) #k-deck{position:fixed;inset:0;overflow:clip}
+html.k-js:not(.k-mob) #palco{position:absolute;left:50%;top:50%;width:1600px;height:900px;margin:-450px 0 0 -800px;transform-origin:center;overflow:clip;background:var(--k-papel)}
+html.k-js:not(.k-mob) .slide{position:absolute;inset:0;overflow:clip;visibility:hidden}
+html.k-js:not(.k-mob) .slide.on{visibility:visible;z-index:2}
+.slide{position:relative;padding:var(--k-pad) var(--k-pad) 96px;background:var(--k-papel);color:var(--k-tinta)}
+.slide.k-escuro{background:var(--k-escuro);color:var(--k-papel);--k-tinta-2:rgba(242,241,233,.72);--k-tinta-3:rgba(242,241,233,.45);--k-linha:rgba(242,241,233,.18)}
+.slide.k-cor{background:var(--k-marca);color:var(--k-marca-txt)}
+.slide.k-sangria{padding:0}
+
+/* transições (400 a 700 ms; cada tela escolhe com data-transicao) */
+html.k-js:not(.k-mob) .slide.k-sai{visibility:visible;z-index:1;animation:k-sai .62s var(--k-e2) forwards}
+@keyframes k-sai{to{transform:scale(.95);filter:blur(10px) brightness(.55);opacity:.15}}
+html.k-js:not(.k-mob) .slide.k-entra[data-transicao="corte"],html.k-js:not(.k-mob) .slide.k-entra:not([data-transicao]){animation:k-corte .7s var(--k-e2) both}
+@keyframes k-corte{from{clip-path:inset(0 0 100% 0);transform:scale(1.06)}to{clip-path:inset(0);transform:none}}
+html.k-js:not(.k-mob) .slide.k-entra[data-transicao="deslize"]{animation:k-deslize .6s var(--k-e1) both}
+html.k-js:not(.k-mob) .slide.k-entra.k-volta[data-transicao="deslize"]{animation-name:k-deslizeV}
+@keyframes k-deslize{from{opacity:0;transform:translate3d(60px,0,0)}to{opacity:1;transform:none}}
+@keyframes k-deslizeV{from{opacity:0;transform:translate3d(-60px,0,0)}to{opacity:1;transform:none}}
+html.k-js:not(.k-mob) .slide.k-entra[data-transicao="cortina"]{animation:k-cortina .7s var(--k-e2) both}
+html.k-js:not(.k-mob) .slide.k-entra.k-volta[data-transicao="cortina"]{animation-name:k-cortinaV}
+@keyframes k-cortina{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}
+@keyframes k-cortinaV{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+html.k-js:not(.k-mob) .slide.k-entra[data-transicao="zoom"]{animation:k-zoom .65s var(--k-e1) both}
+@keyframes k-zoom{from{opacity:0;transform:scale(1.12);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+#k-varre{position:absolute;top:0;bottom:0;width:4px;left:100%;background:var(--k-marca);z-index:58;opacity:0;pointer-events:none}
+#k-varre.vai{animation:k-varre .7s var(--k-e2)}
+#k-varre.vai.volta{animation-name:k-varreV}
+@keyframes k-varre{0%{left:100%;opacity:1}99%{opacity:1}100%{left:0;opacity:0}}
+@keyframes k-varreV{0%{left:0;opacity:1}99%{opacity:1}100%{left:100%;opacity:0}}
+.k-cine{position:absolute;left:0;right:0;height:0;background:#050505;z-index:57;pointer-events:none;transition:height .32s var(--k-e2)}
+#k-cineT{top:0}#k-cineB{bottom:0}
+#palco.k-cortando .k-cine{height:78px}
+
+/* entrada dos elementos em sequência (stagger): data-a="" sobe, "e" esquerda, "d" direita, "z" escala */
+html.k-js:not(.k-mob) .slide [data-a]{opacity:0;transform:translateY(22px);filter:blur(4px);transition:opacity .6s var(--k-e1),transform .7s var(--k-e1),filter .6s var(--k-e1);transition-delay:calc(var(--d,0) * 70ms + 90ms)}
+html.k-js:not(.k-mob) .slide [data-a="e"]{transform:translateX(-30px)}
+html.k-js:not(.k-mob) .slide [data-a="d"]{transform:translateX(30px)}
+html.k-js:not(.k-mob) .slide [data-a="z"]{transform:scale(.92)}
+html.k-js:not(.k-mob) .slide.in [data-a]{opacity:1;transform:none;filter:none}
+.k-linha{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.k-linha>span{display:inline-block}
+html.k-js:not(.k-mob) .slide .k-linha>span{transform:translateY(110%);transition:transform .75s var(--k-e1);transition-delay:calc(var(--d,0) * 90ms + 60ms)}
+html.k-js:not(.k-mob) .slide.in .k-linha>span{transform:none}
+.k-traco{stroke-dasharray:var(--L,1400);stroke-dashoffset:var(--L,1400);transition:stroke-dashoffset 1.6s var(--k-e1)}
+.slide.in .k-traco,html.k-mob .k-traco{stroke-dashoffset:0}
+.k-kb{animation:k-kb 18s ease-out forwards;animation-play-state:paused;transform-origin:var(--o,50% 50%)}
+.slide.in .k-kb{animation-play-state:running}
+@keyframes k-kb{from{transform:scale(1.14)}to{transform:scale(1.01)}}
+
+/* ---------- tipografia ---------- */
+.k-rotulo{font-family:var(--k-f-rot);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--k-tinta-2);display:flex;align-items:center;gap:12px;margin:0 0 18px}
+.k-rotulo b{color:var(--k-marca-2);font-weight:700}
+.k-escuro .k-rotulo b{color:var(--k-marca)}
+.k-rotulo i{width:34px;height:2px;background:currentColor;display:block}
+.k-mega,.k-titulo,.k-sub{font-family:var(--k-f-tit);font-weight:900;text-transform:var(--k-tit-caixa);letter-spacing:-.025em;line-height:1.04;margin:0}
+.k-mega{font-size:112px;line-height:.98}
+.k-titulo{font-size:76px}
+.k-sub{font-size:44px}
+.k-mega em,.k-titulo em,.k-sub em{font-style:normal;color:var(--k-marca-2)}
+.k-escuro .k-mega em,.k-escuro .k-titulo em,.k-escuro .k-sub em,.k-capa .k-mega em{color:var(--k-marca)}
+.k-mega s,.k-titulo s{text-decoration:none;opacity:.38}
+.k-apoio{font-size:20px;line-height:1.5;color:var(--k-tinta-2);max-width:560px;margin:22px 0 0}
+.k-num{font-family:var(--k-f-tit);font-weight:900;font-size:168px;line-height:.86;letter-spacing:-.04em;font-variant-numeric:tabular-nums;display:inline-block}
+.k-num small{font-size:.38em;letter-spacing:0;margin-left:.06em}
+.k-num-leg{font-size:18px;line-height:1.45;color:var(--k-tinta-2);max-width:360px;margin-top:10px}
+.k-fonte{position:absolute;left:var(--k-pad);right:var(--k-pad);bottom:44px;font-family:var(--k-f-rot);font-size:11px;letter-spacing:.06em;color:var(--k-tinta-3);margin:0}
+.k-dados{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin:0;font-size:15px}
+.k-dados dt{font-family:var(--k-f-rot);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--k-tinta-3)}
+.k-dados dd{margin:0}
+
+/* botões (cantos retos, borda 2px, seta) */
+.k-btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px;border:2px solid currentColor;border-radius:var(--k-raio);font-family:var(--k-f-rot);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:inherit;background:none;text-decoration:none;transition:transform .25s var(--k-e1),background .25s,color .25s}
+.k-btn:hover{transform:translate(-2px,-2px)}
+.k-btn.k-cheio{background:var(--k-marca);border-color:var(--k-marca);color:var(--k-marca-txt)}
+.k-btn.k-zap{background:#25D366;border-color:#25D366;color:#06301a}
+.k-btn::after{content:"→";font-family:var(--k-f-txt);font-size:18px}
+
+/* ---------- chrome: cabeçalho com 2 logos, rodapé com capítulo, contador, progresso ---------- */
+.k-ui{position:absolute;z-index:50;display:flex;align-items:center;gap:16px;color:var(--k-tinta);transition:color .4s}
+#palco.k-ui-claro .k-ui{color:#fff}
+#k-topo{left:44px;right:44px;top:26px;height:40px}
+#k-topo img{height:30px;width:auto;display:block}
+#k-topo .k-x{width:1px;height:24px;background:currentColor;opacity:.3}
+#k-topo .k-sp{flex:1}
+#palco.k-na-capa #k-topo{opacity:0;pointer-events:none}
+#k-topo .k-cap{font-family:var(--k-f-rot);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+#k-pe{left:44px;right:40px;bottom:22px;height:40px}
+#k-pe .k-sp{flex:1}
+#k-cont{font-family:var(--k-f-rot);font-weight:700;font-size:13px;letter-spacing:.14em;min-width:70px;text-align:center}
+#k-cont b{color:inherit}
+.k-nb{width:44px;height:44px;display:grid;place-items:center;border:2px solid currentColor;border-radius:var(--k-raio);background:none;color:inherit;opacity:.5;transition:opacity .2s,background .2s,transform .2s}
+.k-nb:hover{opacity:1;background:var(--k-marca);color:var(--k-marca-txt);border-color:var(--k-marca);transform:translate(-2px,-2px)}
+.k-nb svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none}
+#k-prog{position:absolute;left:0;top:0;height:4px;background:var(--k-marca);z-index:59;transition:width .6s var(--k-e1)}
+#k-trilha{display:flex;gap:4px}
+#k-trilha button{width:22px;height:44px;display:grid;place-items:center;background:none;border:0;color:inherit;padding:0}
+#k-trilha i{display:block;width:100%;height:2px;background:currentColor;opacity:.22;transition:opacity .3s}
+#k-trilha button.on i{opacity:1;height:3px;background:var(--k-marca-2)}
+#palco.k-ui-claro #k-trilha button.on i{background:var(--k-marca)}
+
+/* índice (tecla M) */
+#k-indice{position:absolute;inset:0;z-index:70;background:rgba(10,10,12,.97);color:#fff;opacity:0;pointer-events:none;transition:opacity .35s;padding:80px 72px;display:flex;flex-direction:column;gap:24px}
+#k-indice.on{opacity:1;pointer-events:auto}
+#k-indice ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+#k-indice button{width:100%;min-height:84px;text-align:left;padding:14px 16px;background:#17171c;border:0;color:#fff;display:flex;flex-direction:column;gap:8px;font:600 15px var(--k-f-txt)}
+#k-indice button em{font:700 12px var(--k-f-rot);font-style:normal;color:var(--k-marca)}
+#k-indice button.on{background:var(--k-marca);color:var(--k-marca-txt)}
+#k-indice button.on em{color:inherit}
+
+/* grão de filme */
+#k-grao{position:absolute;inset:-40%;z-index:56;pointer-events:none;opacity:.06;mix-blend-mode:multiply;animation:k-grao 1.1s steps(6) infinite;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+#palco.k-ui-claro #k-grao{mix-blend-mode:screen;filter:invert(1);opacity:.07}
+@keyframes k-grao{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-5%,-1%)}80%{transform:translate(4%,3%)}100%{transform:translate(0,0)}}
+
+/* cursor em dois tons (anel escuro + contorno claro, ponto com halo) com rótulo */
+#k-cur,#k-dot{position:fixed;left:0;top:0;pointer-events:none;z-index:9999;border-radius:50%;opacity:0;transition:opacity .3s}
+body.k-cur-on #k-cur,body.k-cur-on #k-dot{opacity:1}
+#k-cur{width:36px;height:36px;margin:-18px 0 0 -18px;border:2px solid var(--k-tinta);box-shadow:0 0 0 1.5px rgba(255,255,255,.92),inset 0 0 0 1.5px rgba(255,255,255,.92);display:grid;place-items:center;transition:width .3s var(--k-e1),height .3s var(--k-e1),margin .3s var(--k-e1),background .3s,opacity .3s}
+#k-cur span{font:700 9px var(--k-f-rot);letter-spacing:.14em;text-transform:uppercase;color:var(--k-marca-txt);opacity:0;transition:opacity .2s}
+#k-dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:var(--k-marca-2);box-shadow:0 0 0 2px rgba(255,255,255,.95),0 0 0 3.5px rgba(5,5,5,.5)}
+body.k-hov #k-cur{width:62px;height:62px;margin:-31px 0 0 -31px;background:color-mix(in srgb,var(--k-marca) 88%,transparent);border-color:var(--k-tinta)}
+body.k-hov.k-rot #k-cur{width:88px;height:88px;margin:-44px 0 0 -44px}
+body.k-hov.k-rot #k-cur span{opacity:1}
+@media (hover:none),(pointer:coarse){#k-cur,#k-dot{display:none}}
+
+/* lightbox: toda imagem de conteúdo amplia */
+#k-lb{position:fixed;inset:0;z-index:9000;background:rgba(6,6,8,.95);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .35s}
+#k-lb.on{opacity:1;pointer-events:auto}
+#k-lb img{max-width:92vw;max-height:86vh;transform:scale(.95);transition:transform .6s var(--k-e1)}
+#k-lb.on img{transform:none}
+#k-lb button{position:fixed;width:52px;height:52px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.35);background:none;color:#fff;font-size:22px}
+#k-lbX{right:28px;top:28px}#k-lbP{left:28px;top:50%}#k-lbN{right:28px;top:50%}
+
+/* ---------- COMPONENTES ---------- */
+/* capa com 2 logos e KV */
+.slide.k-capa{padding:0;color:#fff;background:#0b0b0d}
+.k-capa .k-capa-kv{position:absolute;inset:0;overflow:hidden}
+.k-capa .k-capa-kv img,.k-capa .k-capa-kv video{width:100%;height:100%;object-fit:cover;display:block}
+.k-capa .k-capa-kv::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,5,5,.78) 0%,rgba(5,5,5,.45) 46%,rgba(5,5,5,0) 74%)}
+.k-capa .k-capa-txt{position:absolute;left:var(--k-pad);bottom:120px;max-width:820px;z-index:2}
+.k-capa .k-capa-logos{position:absolute;left:var(--k-pad);top:72px;display:flex;align-items:center;gap:22px;z-index:2}
+.k-capa .k-capa-logos img{height:54px;width:auto;display:block}
+.k-capa .k-capa-logos i{width:2px;height:40px;background:rgba(255,255,255,.5)}
+.k-capa .k-apoio{color:rgba(255,255,255,.82)}
+.k-capa .k-rotulo{color:rgba(255,255,255,.7)}
+
+/* número herói */
+.k-heroi-num{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:end}
+
+/* gráfico com abas */
+.k-grafico{display:flex;flex-direction:column;gap:26px}
+.k-abas{display:flex;gap:0;border:2px solid var(--k-linha);align-self:flex-start}
+.k-abas button{min-height:46px;padding:0 22px;border:0;background:none;color:inherit;font:700 13px var(--k-f-rot);letter-spacing:.14em;text-transform:uppercase;opacity:.6;transition:background .25s,opacity .25s}
+.k-abas button.on{background:var(--k-tinta);color:var(--k-papel);opacity:1}
+.k-escuro .k-abas button.on{background:var(--k-marca);color:var(--k-marca-txt)}
+.k-barras{display:flex;flex-direction:column;gap:16px}
+.k-barra{display:grid;grid-template-columns:220px 1fr 96px;align-items:center;gap:18px}
+.k-barra .k-b-rot{font-size:17px;font-weight:600}
+.k-barra .k-b-trilho{height:34px;background:var(--k-papel-2);position:relative;overflow:hidden}
+.k-escuro .k-barra .k-b-trilho{background:rgba(255,255,255,.08)}
+.k-barra .k-b-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--k-marca-2);transition:width 1s var(--k-e1)}
+.k-barra.k-dest .k-b-fill{background:var(--k-marca)}
+.k-barra .k-b-val{font-family:var(--k-f-tit);font-weight:900;font-size:40px;text-align:right;font-variant-numeric:tabular-nums}
+.k-grafico .k-g-nota{font-size:18px;line-height:1.5;color:var(--k-tinta-2);max-width:620px;margin:0;transition:opacity .3s}
+.k-grafico .k-g-nota.h{opacity:0}
+
+/* imagem com pontos clicáveis (hotspots) */
+.k-pontos{position:relative}
+.k-pontos>img{display:block;width:100%;height:100%;object-fit:contain}
+.k-ponto{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:0;background:var(--k-marca);color:var(--k-marca-txt);font:700 15px var(--k-f-rot);display:grid;place-items:center;box-shadow:0 0 0 3px rgba(255,255,255,.9),0 8px 20px rgba(0,0,0,.25);z-index:3}
+.k-ponto::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--k-marca);animation:k-pulso 2.2s ease-out infinite}
+.k-ponto.on{background:var(--k-tinta);color:#fff}
+@keyframes k-pulso{0%{transform:scale(.7);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.k-pontos-info{transition:opacity .3s}
+.k-pontos-info.h{opacity:0}
+.k-pontos-info h3{font-family:var(--k-f-tit);font-weight:900;text-transform:var(--k-tit-caixa);font-size:44px;line-height:1.02;margin:0 0 12px}
+.k-pontos-info p{font-size:18px;line-height:1.5;color:var(--k-tinta-2);margin:0}
+.k-pontos-lista{display:flex;flex-direction:column;gap:8px;margin-top:22px}
+.k-pontos-lista button{display:flex;gap:14px;align-items:center;min-height:44px;padding:0 14px;border:2px solid var(--k-linha);background:none;color:inherit;font:600 15px var(--k-f-txt);text-align:left}
+.k-pontos-lista button b{font:700 12px var(--k-f-rot);color:var(--k-marca-2)}
+.k-pontos-lista button.on{border-color:var(--k-tinta);background:var(--k-tinta);color:var(--k-papel)}
+.k-pontos-lista button.on b{color:var(--k-marca)}
+
+/* antes e depois arrastável */
+.k-ad{position:relative;overflow:hidden;--pos:50%;user-select:none;touch-action:pan-y}
+.k-ad img{display:block;width:100%;height:100%;object-fit:cover}
+.k-ad .k-ad-depois{position:absolute;inset:0;clip-path:inset(0 0 0 var(--pos))}
+.k-ad .k-ad-linha{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.2);pointer-events:none;z-index:2}
+.k-ad .k-ad-linha::after{content:"⟷";position:absolute;top:50%;left:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--k-marca);color:var(--k-marca-txt);display:grid;place-items:center;font-size:22px;box-shadow:0 0 0 3px #fff}
+.k-ad input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize;z-index:3}
+.k-ad-rotulos{display:flex;justify-content:space-between;margin-top:12px;font:700 12px var(--k-f-rot);letter-spacing:.16em;text-transform:uppercase;color:var(--k-tinta-2)}
+
+/* encerramento com QR e WhatsApp */
+.k-fim{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}
+.k-fim .k-qr{width:220px;height:220px;background:#fff;padding:14px;display:grid;place-items:center}
+.k-fim .k-qr svg,.k-fim .k-qr img{width:100%;height:100%;display:block}
+.k-fim .k-qr-leg{font:700 12px var(--k-f-rot);letter-spacing:.14em;text-transform:uppercase;color:var(--k-tinta-2);margin-top:12px}
+.k-fim .k-fim-logos{display:flex;align-items:center;gap:22px;margin-bottom:34px}
+.k-fim .k-fim-logos img{height:44px;width:auto}
+
+/* utilidades de composição */
+.k-grade{display:grid;gap:48px;height:100%}
+.k-2col{grid-template-columns:1fr 1fr}
+.k-60{grid-template-columns:1.35fr 1fr}
+.k-40{grid-template-columns:1fr 1.35fr}
+.k-centro{align-items:center}
+.k-sangria-img{position:absolute;top:0;bottom:0;right:0;width:54%;overflow:hidden}
+.k-sangria-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* tela de transição: divisor de capítulo (Caique, 18/10/2026: "considere tela de transição nas apresentações") */
+.slide.k-divisor{display:flex;flex-direction:column;justify-content:center;background:var(--k-marca);color:var(--k-marca-txt)}
+.slide.k-divisor.k-escuro{background:var(--k-escuro);color:var(--k-papel)}
+.slide.k-divisor.k-papel{background:var(--k-papel);color:var(--k-tinta)}
+.k-divisor .k-div-num{position:absolute;right:var(--k-pad);bottom:64px;font-family:var(--k-f-tit);font-weight:900;font-size:300px;line-height:.8;letter-spacing:-.05em;opacity:.16;font-variant-numeric:tabular-nums}
+.k-divisor .k-div-cap{display:flex;align-items:center;gap:14px;margin:0 0 24px;font-family:var(--k-f-rot);font-weight:700;font-size:14px;letter-spacing:.24em;text-transform:uppercase}
+.k-divisor .k-div-cap i{display:block;width:56px;height:2px;background:currentColor}
+.k-divisor .k-mega{max-width:1120px}
+.k-divisor .k-div-ponte{max-width:780px;margin:28px 0 0;font-size:24px;line-height:1.45;opacity:.82}
+.k-divisor .k-div-trilha{display:flex;flex-wrap:wrap;gap:10px;margin-top:56px}
+.k-divisor .k-div-trilha span{padding:10px 14px;border:2px solid currentColor;font:700 12px var(--k-f-rot);letter-spacing:.16em;text-transform:uppercase;opacity:.38}
+.k-divisor .k-div-trilha span.on{opacity:1;border-width:3px}
+
+/* tela de peça: uma por peça sugerida, foto na vida real + recorte em fundo neutro + o que é, como funciona, racional e
+   benefícios com ícones (Caique, 18/10/2026) */
+.k-peca{display:grid;grid-template-columns:1.08fr .92fr;gap:44px;height:100%;align-items:stretch}
+.k-peca-fotos{display:grid;grid-template-columns:1.55fr 1fr;gap:14px;min-height:0}
+.k-peca-fotos figure{position:relative;margin:0;overflow:hidden;background:var(--k-papel-2)}
+.k-peca-fotos img{display:block;width:100%;height:100%;object-fit:cover}
+.k-peca-fotos .k-peca-recorte{display:grid;place-items:center;background:#fff}
+.k-peca-fotos .k-peca-recorte img{object-fit:contain;padding:18px}
+.k-peca-txt{display:flex;flex-direction:column;gap:10px;min-height:0}
+.k-peca-txt .k-sub{margin:0 0 6px}
+.k-peca-bloco{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;padding:12px 0 0;border-top:2px solid var(--k-linha)}
+.k-peca-bloco svg{width:32px;height:32px;fill:none;stroke:var(--k-marca-2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.k-escuro .k-peca-bloco svg{stroke:var(--k-marca)}
+.k-peca-bloco h4{margin:0 0 4px;font:700 12px var(--k-f-rot);letter-spacing:.18em;text-transform:uppercase;color:var(--k-tinta-2)}
+.k-peca-bloco p{margin:0;font-size:16px;line-height:1.45}
+.k-peca-benef{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.k-peca-benef div{padding:10px 12px;background:var(--k-papel-2)}
+.k-escuro .k-peca-benef div{background:rgba(255,255,255,.07)}
+.k-peca-benef b{display:block;margin-bottom:4px;font:700 11px var(--k-f-rot);letter-spacing:.16em;text-transform:uppercase;color:var(--k-marca-2)}
+.k-peca-benef span{font-size:14px;line-height:1.4}
+
+/* conceito explicado (One Shot, On Timing, Códice, ClickLab...): o que é, como funciona e benefício, com fluxo de ícones */
+/* 11. solução em cartões (deck enxuto, 20/10/2026) */
+.k-solucao{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:26px;margin-top:34px}
+.k-sol-peca{display:flex;flex-direction:column;gap:12px;min-width:0}
+.k-sol-peca figure{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--k-papel-2)}
+.k-sol-peca figure>img[data-img="cena"]{display:block;width:100%;height:100%;object-fit:cover}
+.k-sol-peca .k-sol-recorte{position:absolute;right:12px;bottom:12px;width:26%;aspect-ratio:1;object-fit:contain;background:#fff;padding:8px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.k-resolve{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:8px;padding:7px 12px;background:var(--k-marca);color:var(--k-marca-txt);font:700 13px/1 'Space Mono',monospace;text-transform:uppercase;letter-spacing:.04em}
+.k-resolve svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.k-sol-peca h3{margin:4px 0 0;font-size:28px;line-height:1.05}
+.k-sol-peca p{margin:0;font-size:18px;line-height:1.4;opacity:.85}
+@media (max-width:820px){.k-solucao{grid-template-columns:1fr}}
+.k-conceito{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.k-conceito>div{padding:22px 22px 24px;border-top:4px solid var(--k-marca-2)}
+.k-escuro .k-conceito>div{border-top-color:var(--k-marca)}
+.k-conceito h4{margin:0 0 8px;font:700 12px var(--k-f-rot);letter-spacing:.18em;text-transform:uppercase;color:var(--k-tinta-2)}
+.k-conceito p{margin:0;font-size:17px;line-height:1.45}
+.k-fluxo{display:flex;align-items:center;gap:0;margin:26px 0 0}
+.k-fluxo>span{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:120px;font:700 11px var(--k-f-rot);letter-spacing:.14em;text-transform:uppercase;text-align:center}
+.k-fluxo>span svg{width:46px;height:46px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.k-fluxo>i{flex:1;height:2px;min-width:40px;background:currentColor;opacity:.35;position:relative}
+.k-fluxo>i::after{content:"";position:absolute;right:-1px;top:-5px;border:6px solid transparent;border-left-color:currentColor}
+
+@media (prefers-reduced-motion:reduce){
+  html.k-js .slide [data-a],html.k-js .slide .k-linha>span{transition:none!important;opacity:1!important;transform:none!important;filter:none!important}
+  .slide,.k-kb,#k-grao,.k-ponto::before{animation:none!important}
+}
+@media print{
+  html,body{height:auto!important;overflow:visible!important}
+  #k-deck,#palco{position:static!important;transform:none!important;margin:0!important;height:auto!important}
+  .slide{position:relative!important;visibility:visible!important;width:1600px;height:900px;page-break-after:always;animation:none!important}
+  .slide [data-a],.slide .k-linha>span{opacity:1!important;transform:none!important;filter:none!important}
+  .k-ui,#k-prog,#k-cur,#k-dot,#k-grao,#k-indice,#k-lb,.k-cine,#k-varre{display:none!important}
+}
+</style>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bombril × 75 LAB · O ponto natural tem dono</title>
+<meta name="description" content="Proposta da 75 LAB para a concorrência de MPDV da Bombril: backlight, ponto natural de lã de aço e Sapólio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#050505;--ink-2:#101013;--ink-3:#17171c;--paper:#F2F1E9;--paper-2:#E7E5DA;--lime:#C0EE4E;--lime-2:#AFD637;--teal:#01A290;--teal-2:#06C6AE;--roxo:#6B2FB8;--titulo:'Big Shoulders Display',Impact,sans-serif;--corpo:'Space Grotesk',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--ink);overflow:hidden;color:var(--paper);font-family:var(--corpo);-webkit-font-smoothing:antialiased}
+body.tem-mouse,body.tem-mouse *{cursor:none!important}
+#wrap{position:fixed;inset:0;overflow:hidden;background:var(--ink)}
+#stage{position:absolute;left:50%;top:50%;width:1600px;height:900px;margin:-450px 0 0 -800px;transform-origin:center}
+.tela{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .55s ease,visibility .55s}
+.tela.ativa,.tela.on{opacity:1;visibility:visible}
+.tela.claro{background:var(--paper);color:var(--ink)}
+.tela.escuro{background:var(--ink-2);color:var(--paper)}
+.tela.lime{background:var(--lime);color:var(--ink)}
+/* grão e luz */
+.grao{position:absolute;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.eyebrow{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+.eyebrow b{color:var(--teal)}
+.escuro .eyebrow b,.capa .eyebrow b{color:var(--lime)}
+h1,h2,.num{font-family:var(--titulo);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:1.04}
+.apagada{opacity:.38}
+.lead{font-size:20px;line-height:1.45;max-width:620px}
+.fonte{position:absolute;left:72px;bottom:30px;font-size:11px;font-family:var(--mono);opacity:.55;max-width:1100px}
+.botao{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 22px;border:2px solid currentColor;background:transparent;color:inherit;text-decoration:none;transition:transform .2s,background .2s,color .2s}
+.botao:hover{background:var(--lime);color:var(--ink);border-color:var(--ink);transform:translate(-2px,-2px);box-shadow:2px 2px 0 var(--ink)}
+.botao.cheio{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.seta::after{content:'→';font-family:var(--corpo);font-size:17px}
+/* cabeçalho com as duas marcas */
+.marcas{position:absolute;top:34px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+.marcas img.bb{height:44px}
+.marcas img.lab{height:26px}
+.marcas .x{font-family:var(--mono);font-size:12px;opacity:.6;margin:0 16px}
+.marcas .par{display:flex;align-items:center}
+/* rodapé de navegação */
+#nav{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.08);z-index:20}
+#nav i{display:block;height:100%;width:0;background:var(--lime);transition:width .5s}
+#cont{position:absolute;right:72px;bottom:24px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;z-index:20;mix-blend-mode:difference;color:#fff}
+.dica{position:absolute;right:72px;top:40px;font-family:var(--mono);font-size:11px;opacity:.5;letter-spacing:.1em}
+
+/* 01 capa */
+.capa{background:#000}
+.capa .foto{position:absolute;inset:0;background:url(assets/02-1793383473767-imagem.png) right center/cover;transform:scale(1.04);transition:transform 8s ease}
+.capa.ativa .foto{transform:scale(1)}
+.capa .veu{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,.95) 0%,rgba(5,5,5,.86) 30%,rgba(5,5,5,.25) 43%,rgba(5,5,5,0) 52%)}
+.capa .texto{position:absolute;left:72px;bottom:96px;width:560px}
+.capa h1{font-size:88px;margin:22px 0 22px}
+.capa h1 span{color:var(--lime)}
+.capa .lead{font-size:21px;margin-bottom:34px;opacity:.9}
+
+/* 02 desafio */
+.desafio .esq{position:absolute;left:72px;top:150px;width:560px}
+.desafio .num{font-size:230px;color:var(--teal);line-height:.9}
+.desafio .num small{font-size:110px}
+.desafio .rotulo{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-top:14px}
+.desafio .rotulo b{font-family:var(--titulo);font-size:40px;letter-spacing:0;display:block;margin-bottom:4px}
+.desafio .contexto{font-size:18px;line-height:1.45;margin-top:22px;max-width:470px}
+.desafio .dir{position:absolute;left:720px;top:150px;width:810px}
+.desafio h2{font-size:76px;margin:16px 0 36px}
+.barreiras{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid rgba(5,5,5,.16)}
+.barreira{padding:24px 22px 26px 0;border-right:2px solid rgba(5,5,5,.16);position:relative}
+.barreira:last-child{border-right:0}
+.barreira+.barreira{padding-left:22px}
+.barreira .ic{width:46px;height:46px;margin-bottom:16px;color:var(--teal);display:block}
+.barreira .n{font-family:var(--mono);font-size:12px;color:var(--teal);font-weight:700}
+.barreira h3{font-family:var(--titulo);font-weight:900;font-size:40px;text-transform:uppercase;line-height:1;margin:6px 0 10px}
+.barreira p{font-size:16px;line-height:1.4;opacity:.8}
+.desafio .disputa{margin-top:28px;display:flex;gap:14px;align-items:center;font-size:16px}
+.desafio .disputa .selo{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;background:var(--ink);color:var(--lime);padding:6px 10px}
+
+/* 01 a 75 LAB */
+.lab .esq{position:absolute;left:72px;top:140px;width:660px}
+.lab h2{font-size:78px;margin:18px 0 18px}
+.lab h2 span{color:var(--teal)}
+.lab .lead{font-size:19px;margin-bottom:40px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid rgba(5,5,5,.16)}
+.nums div{padding:22px 18px 0 0}
+.nums b{display:block;font-family:var(--titulo);font-weight:900;font-size:96px;line-height:.9;color:var(--ink)}
+.nums div>span{display:block;font-size:15px;line-height:1.35;margin-top:10px;opacity:.75;max-width:170px}
+.lab .dir{position:absolute;left:820px;top:140px;width:708px}
+.cadeia{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 44px;counter-reset:c}
+.cadeia li{position:relative;background:var(--ink);color:var(--paper);padding:16px 16px 14px;font-family:var(--titulo);font-weight:900;font-size:26px;text-transform:uppercase;line-height:1}
+.cadeia li::before{counter-increment:c;content:'0' counter(c);display:block;font-family:var(--mono);font-size:11px;color:var(--lime);letter-spacing:.12em;margin-bottom:8px}
+.cadeia li.on{background:var(--lime);color:var(--ink)}.cadeia li.on::before{color:var(--ink)}
+.casa{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:16px;border-top:2px solid rgba(5,5,5,.16);border-left:2px solid rgba(5,5,5,.16)}
+.casa li{list-style:none;display:grid;place-items:center;height:78px;border-right:2px solid rgba(5,5,5,.16);border-bottom:2px solid rgba(5,5,5,.16);font-family:var(--titulo);font-weight:700;font-size:28px;text-transform:uppercase;letter-spacing:.02em;transition:background .25s}
+.casa li:hover{background:var(--lime)}
+
+/* 03 key visual */
+.kvs h2{position:absolute;left:72px;top:110px;font-size:62px;width:1200px}
+.kvs h2 span{color:var(--lime)}
+.kvf{position:absolute;left:72px;top:212px;width:960px;height:540px;margin:0;overflow:hidden;border:2px solid rgba(242,241,233,.14);cursor:zoom-in}
+.kvf img{width:100%;height:100%;object-fit:cover;display:block}
+.pt{position:absolute;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:var(--lime);color:var(--ink);font:700 16px/42px var(--mono);font-style:normal;text-align:center;box-shadow:0 0 0 6px rgba(192,238,78,.28);animation:pulso 2.2s ease-in-out infinite}
+@keyframes pulso{50%{box-shadow:0 0 0 12px rgba(192,238,78,.08)}}
+.porque{position:absolute;left:1072px;top:212px;width:456px;list-style:none}
+.porque li{padding:0 0 20px;margin-bottom:20px;border-bottom:2px solid rgba(242,241,233,.12)}
+.porque li b{display:flex;align-items:center;gap:12px;font-family:var(--titulo);font-weight:900;font-size:28px;text-transform:uppercase;line-height:1;margin-bottom:8px}
+.porque li b i{width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--ink);font:700 13px/30px var(--mono);font-style:normal;text-align:center;flex:none}
+.porque li span{font-size:16px;line-height:1.42;opacity:.85}
+.kvs .desdobra{position:absolute;left:72px;top:770px;width:960px;font-size:15px;opacity:.75}
+
+/* 04 sistema */
+.sistema h2{position:absolute;left:72px;top:110px;font-size:62px;width:1200px}
+.sistema h2 span{color:var(--teal)}
+.jornada{position:absolute;left:72px;right:72px;top:212px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.etapa-j{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:3px solid var(--ink)}
+.etapa-j::after{content:'';flex:1;height:0}
+.jornada>div:not(:last-child) .etapa-j::after{content:'→';flex:none;margin-left:auto;font-family:var(--corpo);font-size:20px;line-height:1;color:var(--teal)}
+.conj{margin-top:18px;background:#fff;border:2px solid rgba(5,5,5,.12);padding:22px 24px 20px;position:relative}
+.conj .peso{display:flex;gap:4px;align-items:flex-end;height:30px;margin-bottom:12px}
+.conj .peso i{width:12px;background:var(--ink)}
+.conj .peso i:nth-child(1){height:10px}.conj .peso i:nth-child(2){height:20px}.conj .peso i:nth-child(3){height:30px}
+.conj .peso i.off{background:rgba(5,5,5,.14)}
+.conj h3{font-family:var(--titulo);font-weight:900;font-size:44px;text-transform:uppercase;line-height:1}
+.conj .faz{font-size:17px;font-weight:600;margin:6px 0 14px;color:var(--teal)}
+.conj dl{display:grid;grid-template-columns:96px 1fr;gap:8px 10px;font-size:15px;line-height:1.35}
+.conj dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55;padding-top:3px}
+.ligacoes{position:absolute;left:72px;top:540px;height:132px;width:1456px;overflow:visible}
+.ligacoes path{fill:none;stroke:var(--teal);stroke-width:3;stroke-dasharray:600;stroke-dashoffset:600;transition:stroke-dashoffset 1.2s ease .5s}
+.sistema.ativa .ligacoes path{stroke-dashoffset:0}
+.resultado-esp{position:absolute;left:372px;right:372px;top:672px;background:var(--ink);color:var(--paper);padding:20px 26px;display:flex;gap:18px;align-items:center;font-size:18px;line-height:1.4}
+.resultado-esp b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);flex:none}
+.estrategia{position:absolute;left:72px;bottom:62px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;opacity:.7}
+
+/* 05 peças */
+.pecas-t h2{position:absolute;left:72px;top:110px;font-size:62px;width:1000px}
+.pecas-t h2 span{color:var(--lime)}
+.grupos{position:absolute;left:72px;right:72px;top:212px;bottom:70px;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:auto 1fr;gap:12px 20px}
+.grupo{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:0 0 10px;border-bottom:3px solid var(--lime);display:flex;justify-content:space-between}
+.grupo span{opacity:.6;font-weight:400}
+.g-pesada{grid-column:1/4}.g-media{grid-column:4/6}.g-leve{grid-column:6/8}
+.peca{position:relative;background:var(--ink-3);border:2px solid rgba(242,241,233,.12);display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s,transform .25s;cursor:zoom-in}
+.peca:hover{border-color:var(--lime);transform:translateY(-4px)}
+.peca .img{height:330px;background-size:contain;background-repeat:no-repeat;background-color:#fff;background-position:center;position:relative}
+.peca .resolve{position:absolute;left:0;top:0;max-width:100%;display:flex;align-items:center;gap:8px;background:var(--lime);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.08em;padding:8px 10px;text-transform:uppercase}
+.peca .resolve svg{width:14px;height:14px}
+.peca .corpo{padding:16px 18px 18px}
+.peca .canal{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);opacity:.9}
+.peca h3{font-family:var(--titulo);font-weight:900;font-size:25px;text-transform:uppercase;line-height:1;margin:6px 0 8px}
+.peca p{font-size:14px;line-height:1.4;opacity:.85}
+.peca .ver{position:absolute;right:12px;bottom:10px;font-family:var(--mono);font-size:10px;opacity:.5;letter-spacing:.08em}
+
+/* 05 medir */
+.medir h2{position:absolute;left:72px;top:118px;font-size:70px;width:1000px}
+.medir h2 span{color:var(--teal)}
+.trilha{position:absolute;left:72px;right:72px;top:330px;height:420px}
+.trilha svg.linha{position:absolute;left:0;top:70px;width:100%;height:20px;overflow:visible}
+.trilha .tracejado{stroke:var(--teal);stroke-width:3;stroke-dasharray:10 10;fill:none;animation:andar 1.2s linear infinite}
+@keyframes andar{to{stroke-dashoffset:-40}}
+.paradas{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.parada .bola{width:140px;height:140px;border-radius:50%;background:var(--paper);border:3px solid var(--ink);display:grid;place-items:center;position:relative;z-index:1}
+.parada .bola svg{width:62px;height:62px}
+.parada.forte .bola{background:var(--ink);color:var(--lime)}
+.parada .tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:22px 0 6px}
+.parada h3{font-family:var(--titulo);font-weight:900;font-size:32px;text-transform:uppercase;line-height:1;margin-bottom:10px}
+.parada p{font-size:16px;line-height:1.42;max-width:300px}
+.parada p b{font-weight:600}
+
+/* 06 piloto */
+.piloto .esq{position:absolute;left:72px;top:120px;width:640px}
+.piloto h2{font-size:66px;margin:16px 0 12px}
+.piloto h2 span{color:var(--lime)}
+.piloto .lead{font-size:18px;opacity:.85;margin-bottom:28px}
+.onda{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;width:680px;margin-top:40px}
+.onda .seg{position:relative}
+.onda .seg i{display:block;height:64px;background:#2b2b30;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.piloto.ativa .onda .seg i{transform:scaleX(1)}
+.onda .s1{grid-column:span 2}.onda .s2{grid-column:span 3}.onda .s3{grid-column:span 2}.onda .s4{grid-column:span 5}
+.onda .s2 i{background:var(--teal)}.onda .s3 i{background:var(--lime)}.onda .s4 i{background:repeating-linear-gradient(90deg,var(--lime) 0 10px,rgba(192,238,78,.35) 10px 20px)}
+.onda .seg em{display:block;font:700 12px/1.3 var(--mono);font-style:normal;letter-spacing:.04em;text-transform:uppercase;opacity:.65;margin-top:10px}
+.onda .seg b{display:block;font-family:var(--titulo);font-weight:900;font-size:22px;line-height:1.05;text-transform:uppercase;margin-top:4px}
+.piloto .dir{position:absolute;left:820px;top:130px;width:708px}
+.etapas{list-style:none;margin-top:22px;border-left:2px solid rgba(242,241,233,.18)}
+.etapas li{position:relative;padding:0 0 22px 34px}
+.etapas li::before{content:'';position:absolute;left:-9px;top:6px;width:16px;height:16px;background:var(--ink-2);border:3px solid var(--lime)}
+.etapas li b{font-family:var(--titulo);font-weight:900;font-size:30px;text-transform:uppercase;display:block;line-height:1;margin-bottom:6px}
+.etapas li span{font-size:16px;opacity:.8}
+.resultado{margin-top:6px;padding:18px 22px;border:2px solid var(--lime);font-size:17px;line-height:1.4}
+.resultado b{color:var(--lime)}
+
+/* 07 próximo passo */
+.fim .pergunta{position:absolute;left:72px;top:160px;width:1240px}
+.fim h2{font-size:118px;line-height:.98;margin:20px 0 40px}
+.fim .acoes{display:flex;gap:16px;flex-wrap:wrap}
+.fim .rodape{position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;border-top:2px solid rgba(5,5,5,.2);padding-top:22px;font-size:15px;line-height:1.5}
+.fim .rodape img{height:30px;display:block;margin-bottom:10px}
+.fim .rodape small{font-family:var(--mono);font-size:11px;opacity:.7;display:block;max-width:760px}
+
+/* entrada dos elementos */
+.anima{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.tela.ativa .anima{opacity:1;transform:none}
+.tela.ativa .d1{transition-delay:.12s}.tela.ativa .d2{transition-delay:.24s}.tela.ativa .d3{transition-delay:.36s}.tela.ativa .d4{transition-delay:.48s}
+
+/* lightbox: na loja, recortada e executivo */
+#caixa{position:fixed;inset:0;background:rgba(5,5,5,.94);display:none;z-index:50;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:40px}
+#caixa.aberta{display:flex}
+#caixa img{max-width:86vw;max-height:72vh;object-fit:contain;background:#fff}
+#caixa .abas{display:flex;gap:8px}
+#caixa .abas button,#caixa .abas a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;border:2px solid rgba(242,241,233,.4);padding:10px 14px;text-decoration:none}
+#caixa .abas button.on{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+#caixa .fechar{position:absolute;top:22px;right:28px;font-family:var(--mono);font-size:13px;color:var(--paper);border:2px solid var(--paper);padding:10px 14px;background:transparent}
+#caixa p{font-family:var(--mono);font-size:12px;color:var(--paper);opacity:.75}
+
+/* cursor em dois tons: aparece sobre o lime, o teal e as fotos */
+#cursor{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 2px var(--paper),0 0 0 4px rgba(5,5,5,.35);pointer-events:none;z-index:99;transition:width .18s,height .18s,margin .18s,background .18s;display:none}
+#cursor.sobre{width:46px;height:46px;margin:-23px 0 0 -23px;background:transparent;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--paper)}
+body.tem-mouse #cursor{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/*MOBFIX*/.pk{position:absolute;z-index:3;pointer-events:none;filter:drop-shadow(0 12px 18px rgba(0,0,0,.18))}
+@media (max-width:899px){.eyebrow b,h1 span,h2 span,.capa h1 span,.num{color:#0A5C52!important}.pk{position:static!important;display:block;margin:12px auto;width:110px!important}}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+
+  <!-- 01 · capa -->
+  <section class="slide tela capa ativa on" data-titulo="Capa">
+    <div class="foto" data-img="kv" role="img" aria-label="Key visual: atacarejo com backlight amarelo cheio de lã de aço Bombril ao lado do Sapólio Espuma Ativa, e dois clientes escolhendo"></div>
+    <div class="veu"></div>
+    <div class="marcas"><div class="par"><img class="bb" src="assets/01-oficina-1793383252963-bombril.png" alt="Logo Bombril"><span class="x">×</span><img class="lab" src="assets/03-oficina-1793383254996-75lab-lime.png" alt="Logo 75 LAB"></div></div>
+    <div class="texto">
+      <span class="eyebrow anima"><b>(MPDV)</b> Concorrência · Outubro de 2026</span>
+      <h1 class="anima d1">O ponto natural <span>tem dono.</span></h1>
+      <p class="lead anima d2">Móveis que resistem à loja, lã de aço que lidera o olhar e Sapólio que se explica sozinho.</p>
+      <button class="botao anima d3 seta" data-ir="1">Ver a proposta</button>
+    </div>
+    <div class="grao"></div>
+    <aside class="roteiro" hidden>A ideia inteira numa frase: o ponto natural tem dono, e o dono é a Bombril. A marca inventou a categoria da lã de aço e lidera com 60,5% das unidades vendidas. Falta o móvel que sobrevive à rotina do atacarejo, a exposição que acompanha a liderança e um Sapólio que o shopper entenda em segundos. Vamos mostrar quem somos, o desafio, o key visual, as sete peças, como medimos e como chegamos a todas as regiões.</aside>
+  </section>
+
+  <!-- 02 · a 75 LAB -->
+  <section class="slide tela claro lab" data-tela="75lab" data-titulo="A 75 LAB">
+    <div class="marcas"><div class="par"><img class="bb" src="assets/01-oficina-1793383252963-bombril.png" alt="Logo Bombril" style="height:34px"><span class="x">×</span><img class="lab" src="assets/04-oficina-1793383254073-75lab-black.png" alt="Logo 75 LAB" style="height:20px"></div><span class="eyebrow"><b>(01)</b> Quem faz</span></div>
+    <div class="esq">
+      <h2 class="anima">Trade feito por quem <span>já esteve dos dois lados do balcão.</span></h2>
+      <p class="lead anima d1">Varejo e indústria na mesma mesa. A 75 LAB cria, projeta, fabrica, instala e mede o ponto de venda.</p>
+      <div class="nums anima d2">
+        <div><b>+<span data-conta="15">0</span></b><span>anos entre indústria e varejo</span></div>
+        <div><b data-conta="18">0</b><span>marcas atendidas em 2025 e 2026</span></div>
+        <div><b data-conta="4">0</b><span>plataformas próprias de trade</span></div>
+      </div>
+    </div>
+    <div class="dir">
+      <span class="eyebrow anima"><b>De ponta a ponta</b></span>
+      <ol class="cadeia anima d1"><li>Estratégia</li><li class="on">Key visual</li><li class="on">Projeto executivo</li><li>Produção</li><li>Instalação</li><li>Medição</li></ol>
+      <span class="eyebrow anima d2"><b>Marcas que confiam na 75 LAB</b></span>
+      <ul class="casa anima d2"><li>Lactalis</li><li>Nestlé</li><li>Seara</li><li>Panco</li><li>Savencia</li><li>Panasonic</li><li>SEMP</li><li>Alltak</li></ul>
+    </div>
+    <p class="fonte">Fonte: 75 LAB, carteira de clientes de 2025 e 2026.</p>
+    <aside class="roteiro" hidden>Antes da proposta, quem somos. A 75 LAB nasceu da soma de quem operou loja no varejo com quem respondeu pelo resultado da marca na indústria: mais de 15 anos vivendo a distância entre o plano comercial e a gôndola. Fazemos de ponta a ponta: estratégia, key visual, projeto executivo, produção, instalação e medição. Em 2025 e 2026 atendemos 18 marcas, entre elas Lactalis, Nestlé, Seara e Panco, e temos plataformas próprias de planejamento e rastreio de trade.</aside>
+  </section>
+
+  <!-- 03 · desafio -->
+  <section class="slide tela claro desafio" data-titulo="O desafio">
+    <div class="marcas"><div class="par"><img class="bb" src="assets/01-oficina-1793383252963-bombril.png" alt="Logo Bombril" style="height:34px"><span class="x">×</span><img class="lab" src="assets/04-oficina-1793383254073-75lab-black.png" alt="Logo 75 LAB" style="height:20px"></div></div>
+    <div class="esq anima">
+      <span class="eyebrow">Líder em lã de aço</span>
+      <div class="num" style="margin-top:18px"><span data-conta="60.5" data-casas="1">0</span><small>%</small></div>
+      <div class="rotulo"><b>das unidades vendidas</b>da categoria de esponja de aço são Bombril</div>
+      <p class="contexto">A meta é retomar o patamar de volume e a liderança de share em toda a rede.</p>
+    </div>
+    <div class="dir">
+      <span class="eyebrow anima d1"><b>(02)</b> O desafio</span>
+      <h2 class="anima d1">A marca lidera. <span class="apagada">O móvel precisa</span> acompanhar.</h2>
+      <div class="barreiras anima d2">
+        <div class="barreira"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M24 4l17 7v12c0 10-7 18-17 21C14 41 7 33 7 23V11z"/><path d="M17 24l5 5 9-10"/></svg><span class="n">Barreira 1</span><h3>Resistir à loja</h3><p>Empilhadeira, carrinho, umidade e reparo difícil derrubam o móvel.</p></div>
+        <div class="barreira"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 24s7-13 20-13 20 13 20 13-7 13-20 13S4 24 4 24z"/><circle cx="24" cy="24" r="6"/></svg><span class="n">Barreira 2</span><h3>Ser vista no ponto natural</h3><p>A exposição não acompanha a liderança, nem puxa a esponja sintética.</p></div>
+        <div class="barreira"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><circle cx="24" cy="24" r="19"/><path d="M19 18a5 5 0 1 1 7 4.6c-1.4.6-2 1.6-2 3.4M24 33v1"/></svg><span class="n">Barreira 3</span><h3>Sapólio ser entendido</h3><p>Shopper confuso sobre o uso do saponáceo e pouca visibilidade.</p></div>
+      </div>
+      <div class="disputa anima d3"><span class="selo">Atenção</span>A Cif transformou o saponáceo em multiuso cremoso e investe forte em PDV.</div>
+    </div>
+    <p class="fonte">Fonte: Bombril, briefing de MPDV de 23/10/2026, com Scannshare (YTD jan a abr de 2026, participação em unidades) e Kantar Consumer Book 2025.</p>
+    <aside class="roteiro" hidden>A Bombril tem 60,5% das unidades vendidas de esponja de aço, segundo o Scannshare do começo de 2026 que consta no briefing. O desafio não é de marca, é de ponto de venda. Primeiro, o móvel precisa resistir: empilhadeira, carrinho, umidade e reparo difícil. Segundo, a exposição precisa acompanhar a liderança e puxar a esponja sintética. Terceiro, o Sapólio precisa ser entendido, num mercado em que a Cif investe forte em comunicação e espaço.</aside>
+  </section>
+
+  <!-- 04 · o key visual -->
+  <section class="slide tela escuro kvs" data-tela="kv" data-titulo="O key visual">
+    <div class="marcas"><span class="eyebrow"><b>(03)</b> O key visual</span><span class="dica">Clique na imagem para ampliar</span></div>
+    <h2 class="anima">O amarelo Bombril <span>assina o ponto natural.</span></h2>
+    <figure class="kvf anima d1" data-amplia="assets/02-1793383473767-imagem.png"><img data-img="kv" src="assets/02-1793383473767-imagem.png" alt="Key visual: backlight amarelo Bombril cheio de lã de aço, Sapólio Espuma Ativa ao lado e dois clientes escolhendo no atacarejo"><i class="pt" style="left:17%;top:20%">1</i><i class="pt" style="left:78%;top:8%">2</i><i class="pt" style="left:67%;top:52%">3</i><i class="pt" style="left:34%;top:38%">4</i></figure>
+    <ol class="porque anima d2">
+      <li><b><i>1</i>A frase</b><span>"O ponto natural tem dono." Liderança dita com posse, no espaço limpo do corredor.</span></li>
+      <li><b><i>2</i>O amarelo</b><span>O móvel inteiro na cor da marca, testeira acesa e limpa: é visto do fim do corredor.</span></li>
+      <li><b><i>3</i>O produto herói</b><span>Lã de aço em fileiras cheias, embalagem real. O produto é o destaque, não a peça.</span></li>
+      <li><b><i>4</i>Gente de verdade</b><span>Dois clientes diferentes, atacarejo real: a cena de quem compra e repassa a marca.</span></li>
+    </ol>
+    <p class="desdobra anima d3">O amarelo, o produto em fileira e a testeira limpa se repetem no backlight, no módulo, nos displays, na faixa e no stopper.</p>
+    <aside class="roteiro" hidden>Este é o key visual. A frase afirma a liderança. O amarelo Bombril veste o móvel inteiro, com testeira acesa e limpa, como o briefing pede: logotipo em primeiro lugar e produto como destaque. A lã de aço aparece em fileiras cheias, com a embalagem real, ao lado do Sapólio Espuma Ativa. E a cena mostra gente de verdade escolhendo no atacarejo. É daqui que saem as sete peças, no mesmo código de cor, produto e testeira.</aside>
+  </section>
+
+  <!-- 05 · o sistema de peças -->
+  <section class="slide tela claro sistema" data-tela="sistema" data-titulo="Como as peças funcionam">
+    <div class="marcas"><span class="eyebrow"><b>(04)</b> Como as peças funcionam</span></div>
+    <h2 class="anima">Três conjuntos. <span>Uma loja que vende.</span></h2>
+    <img class="pk" src="assets/05-oficina-1793384054053-la-aco-8un-transp.png" alt="Embalagem da lã de aço Bombril" style="left:1290px;top:70px;width:200px">
+    <div class="jornada">
+      <div class="anima d1"><div class="etapa-j">Ponto natural e ponta</div>
+        <div class="conj"><div class="peso"><i></i><i></i><i></i></div><h3>Pesadas</h3><p class="faz">Resistem e fazem a marca ser vista</p>
+          <dl><dt>Peças</dt><dd>Backlight BL, módulo do ponto natural, estação Espuma Ativa</dd><dt>Canal</dt><dd>Atacarejo, supermercado e hiper</dd><dt>Resolve</dt><dd>Resistir e ser vista</dd><dt>Resultado</dt><dd>Móvel firme, lã de aço líder em destaque</dd></dl></div></div>
+      <div class="anima d2"><div class="etapa-j">Corredor de limpeza</div>
+        <div class="conj"><div class="peso"><i></i><i></i><i class="off"></i></div><h3>Médias</h3><p class="faz">Expõem e explicam junto da categoria</p>
+          <dl><dt>Peças</dt><dd>Display 3 e 6 fardos, display Sapólio por uso</dd><dt>Canal</dt><dd>Atacarejo e supermercado</dd><dt>Resolve</dt><dd>Ser entendido</dd><dt>Resultado</dt><dd>Reposição rápida e uso explicado</dd></dl></div></div>
+      <div class="anima d3"><div class="etapa-j">Prateleira</div>
+        <div class="conj"><div class="peso"><i></i><i class="off"></i><i class="off"></i></div><h3>Leves</h3><p class="faz">Convertem na hora da decisão</p>
+          <dl><dt>Peças</dt><dd>Faixa de gôndola e stopper Sapólio</dd><dt>Canal</dt><dd>Todos, sob medida de cada rede</dd><dt>Resolve</dt><dd>Ser entendido e escolhido</dd><dt>Resultado</dt><dd>Linha blocada e decisão em segundos</dd></dl></div></div>
+    </div>
+    <svg class="ligacoes" viewBox="0 0 1456 70" preserveAspectRatio="none"><path d="M234 0 V30 Q234 50 254 50 H560 Q580 50 580 70"/><path d="M728 0 V70"/><path d="M1222 0 V30 Q1222 50 1202 50 H896 Q876 50 876 70"/></svg>
+    <div class="resultado-esp anima d4"><b>Além do móvel</b>Jornada do shopper, organização da categoria, comunicação, abastecimento e manutenção no mesmo projeto.</div>
+    <p class="estrategia">Estratégia: dono do ponto natural na lã de aço, líder que se explica no Sapólio, móvel que dura.</p>
+    <aside class="roteiro" hidden>As peças trabalham juntas, na ordem em que o shopper anda. As pesadas ficam no ponto natural e na ponta: resistem à rotina e fazem a marca ser vista. As médias ficam no corredor de limpeza, expõem direto do fardo e explicam o Sapólio por uso. As leves ficam na prateleira e ajudam a decidir. E olhamos além do móvel: jornada do shopper, organização da categoria, comunicação, abastecimento e manutenção. Cada conjunto resolve uma barreira do desafio.</aside>
+  </section>
+
+  <!-- 06 · as peças -->
+  <section class="slide tela escuro pecas-t" data-tela="pecas" data-titulo="As peças">
+    <div class="marcas"><span class="eyebrow"><b>(05)</b> As peças</span><span class="dica">Clique: projeto executivo, PDF e DXF</span></div>
+    <h2 class="anima">Sete peças, <span>um só key visual.</span></h2>
+    <div class="grupos">
+      <div class="grupo g-pesada anima">Pesadas <span>ponto natural</span></div><div class="grupo g-media anima">Médias <span>corredor</span></div><div class="grupo g-leve anima">Leves <span>prateleira</span></div>
+      <article class="peca anima d1" data-peca="Backlight modular BL" data-conjunto="pesada" data-nome="Backlight modular BL" data-recorte="assets/06-oficina-1793383636204-p1-backlight-modular-bl.png" data-tecnico="assets/06-oficina-1793383636204-p1-backlight-modular-bl.png" data-pdf="assets/07-oficina-1793383632961-p1-backlight-modular-bl.pdf" data-dxf="assets/08-oficina-1793383631752-p1-backlight-modular-bl.dxf">
+        <div class="img" data-img="cena" style="background-image:url(assets/06-oficina-1793383636204-p1-backlight-modular-bl.png)"><span class="resolve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1.5l5.5 2.2v4c0 3.2-2.2 5.6-5.5 7-3.3-1.4-5.5-3.8-5.5-7v-4z"/></svg>Resolve: resistir à loja</span></div>
+        <div class="corpo"><span class="canal">Atacarejo · 120 x 200 x 60 cm</span><h3>Backlight modular BL</h3><p>Módulos removíveis e codificados: troca só o que quebrou.</p></div>
+        <span class="ver">Executivo +</span>
+      </article>
+      <article class="peca anima d1" data-peca="Módulo do ponto natural" data-conjunto="pesada" data-nome="Módulo do ponto natural" data-recorte="assets/09-oficina-1793383641547-p2-modulo-ponto-natural.png" data-tecnico="assets/09-oficina-1793383641547-p2-modulo-ponto-natural.png" data-pdf="assets/10-oficina-1793383638396-p2-modulo-ponto-natural.pdf" data-dxf="assets/11-oficina-1793383637237-p2-modulo-ponto-natural.dxf">
+        <div class="img" data-img="cena" style="background-image:url(assets/09-oficina-1793383641547-p2-modulo-ponto-natural.png)"><span class="resolve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 8s3-5 7-5 7 5 7 5-3 5-7 5-7-5-7-5z"/><circle cx="8" cy="8" r="2"/></svg>Resolve: ser vista</span></div>
+        <div class="corpo"><span class="canal">Max e Muffato · 115 x 140 x 75 cm</span><h3>Módulo do ponto natural</h3><p>Frente trocável e cesto de abastecimento, com a lã de aço na liderança.</p></div>
+        <span class="ver">Executivo +</span>
+      </article>
+      <article class="peca anima d1" data-peca="Estação Espuma Ativa" data-conjunto="pesada" data-nome="Estação Espuma Ativa" data-recorte="assets/12-oficina-1793383645578-p3-estacao-espuma-ativa.png" data-tecnico="assets/12-oficina-1793383645578-p3-estacao-espuma-ativa.png" data-pdf="assets/13-oficina-1793383642910-p3-estacao-espuma-ativa.pdf" data-dxf="assets/14-oficina-1793383642176-p3-estacao-espuma-ativa.dxf">
+        <div class="img" data-img="cena" style="background-image:url(assets/12-oficina-1793383645578-p3-estacao-espuma-ativa.png)"><span class="resolve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6.5"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.6c-.5.2-.8.6-.8 1.2M8 11v.5"/></svg>Resolve: ser entendido</span></div>
+        <div class="corpo"><span class="canal">Hiper e super · 70 x 160 x 50 cm</span><h3>Estação Espuma Ativa</h3><p>O shopper vê a espuma agir, sem enxágue.</p></div>
+        <span class="ver">Executivo +</span>
+      </article>
+      <article class="peca anima d2" data-peca="Display 3 e 6 fardos" data-conjunto="media" data-nome="Display 3 e 6 fardos" data-recorte="assets/15-oficina-1793383694141-p4-display-3-e-6-fardos.png" data-tecnico="assets/15-oficina-1793383694141-p4-display-3-e-6-fardos.png" data-pdf="assets/16-oficina-1793383691250-p4-display-3-e-6-fardos.pdf" data-dxf="assets/17-oficina-1793383690060-p4-display-3-e-6-fardos.dxf">
+        <div class="img" data-img="cena" style="background-image:url(assets/15-oficina-1793383694141-p4-display-3-e-6-fardos.png)"><span class="resolve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6.5"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.6c-.5.2-.8.6-.8 1.2M8 11v.5"/></svg>Resolve: ser entendido</span></div>
+        <div class="corpo"><span class="canal">Atacarejo · 60 x 140 x 40 cm</span><h3>Display 3 e 6 fardos</h3><p>Expõe direto do fardo e repõe em minutos.</p></div>
+        <span class="ver">Executivo +</span>
+      </article>
+      <article class="peca anima d2" data-peca="Display Sapólio por uso" data-conjunto="media" data-nome="Display Sapólio por uso" data-recorte="assets/18-oficina-1793383698117-p5-display-sapolio-por-uso.png" data-tecnico="assets/18-oficina-1793383698117-p5-display-sapolio-por-uso.png" data-pdf="assets/19-oficina-1793383695856-p5-display-sapolio-por-uso.pdf" data-dxf="assets/20-oficina-1793383695139-p5-display-sapolio-por-uso.dxf">
+        <div class="img" data-img="cena" style="background-image:url(assets/18-oficina-1793383698117-p5-display-sapolio-por-uso.png)"><span class="resolve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6.5"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.6c-.5.2-.8.6-.8 1.2M8 11v.5"/></svg>Resolve: ser entendido</span></div>
+        <div class="corpo"><span class="canal">Supermercado · 45 x 140 x 35 cm</span><h3>Display Sapólio por uso</h3><p>Linha organizada por uso: cozinha, banheiro e inox.</p></div>
+        <span class="ver">Executivo +</span>
+      </article>
+      <article class="peca anima d3" data-peca="Faixa de gôndola Sapólio" data-conjunto="leve" data-nome="Faixa de gôndola Sapólio" data-recorte="assets/21-oficina-1793383702754-p6-faixa-gondola-sapolio.png" data-tecnico="assets/21-oficina-1793383702754-p6-faixa-gondola-sapolio.png" data-pdf="assets/22-oficina-1793383699903-p6-faixa-gondola-sapolio.pdf" data-dxf="assets/23-oficina-1793383699091-p6-faixa-gondola-sapolio.dxf">
+        <div class="img" data-img="cena" style="background-image:url(assets/21-oficina-1793383702754-p6-faixa-gondola-sapolio.png)"><span class="resolve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5l3 3 7-7"/></svg>Resolve: ser escolhido</span></div>
+        <div class="corpo"><span class="canal">Sob medida · 190 x 5 cm</span><h3>Faixa de gôndola Sapólio</h3><p>Bloca a linha inteira num só ponto.</p></div>
+        <span class="ver">Executivo +</span>
+      </article>
+      <article class="peca anima d3" data-peca="Stopper Sapólio" data-conjunto="leve" data-nome="Stopper Sapólio" data-recorte="assets/24-oficina-1793383762202-p7-stopper-sapolio.png" data-tecnico="assets/24-oficina-1793383762202-p7-stopper-sapolio.png" data-pdf="assets/25-oficina-1793383763467-p7-stopper-sapolio.pdf" data-dxf="assets/26-oficina-1793383703914-p7-stopper-sapolio.dxf">
+        <div class="img" data-img="cena" style="background-image:url(assets/24-oficina-1793383762202-p7-stopper-sapolio.png)"><span class="resolve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5l3 3 7-7"/></svg>Resolve: ser escolhido</span></div>
+        <div class="corpo"><span class="canal">Prateleira · 40 x 10 cm</span><h3>Stopper Sapólio</h3><p>Um benefício por versão, na altura da mão.</p></div>
+        <span class="ver">Executivo +</span>
+      </article>
+    </div>
+    <aside class="roteiro" hidden>Estas são as sete peças, todas do mesmo key visual. Nas pesadas: o backlight modular, com módulos removíveis e codificados; o módulo do ponto natural, nas medidas do projeto do Max; e a estação Espuma Ativa, em que o shopper vê a espuma agir. Nas médias: o display de 3 e 6 fardos e o display Sapólio por uso. Nas leves: a faixa de gôndola e o stopper. Clique em cada uma para abrir o projeto executivo, em PDF e DXF.</aside>
+  </section>
+
+  <!-- 07 · medir -->
+  <section class="slide tela claro medir" data-titulo="Como medimos">
+    <div class="marcas"><span class="eyebrow"><b>(06)</b> Como medimos</span></div>
+    <h2 class="anima">Você vê onde o móvel está, <span>de pé e abastecido.</span></h2>
+    <img class="pk" src="assets/27-oficina-1793383251566-sapolio-floral.png" alt="Sapólio Espuma Ativa Floral" style="left:1330px;top:90px;width:140px">
+    <div class="trilha">
+      <svg class="linha" preserveAspectRatio="none" viewBox="0 0 1456 20"><path class="tracejado" d="M70 10 H1300"/></svg>
+      <div class="paradas">
+        <div class="parada anima d1"><div class="bola"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5"><rect x="10" y="10" width="18" height="18"/><rect x="36" y="10" width="18" height="18"/><rect x="10" y="36" width="18" height="18"/><path d="M38 38h6v6h-6zM50 50h4M50 38v6M38 50h6"/></svg></div><span class="tag">Em cada módulo</span><h3>QR por peça</h3><p>Rodapé, lateral, painel e testeira têm código e manual ilustrado.</p></div>
+        <div class="parada anima d2"><div class="bola"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M32 56s16-15 16-28a16 16 0 0 0-32 0c0 13 16 28 16 28z"/><circle cx="32" cy="28" r="6"/></svg></div><span class="tag">One Shot</span><h3>Montagem comprovada</h3><p><b>O que é:</b> o instalador escaneia ao montar. <b>Benefício:</b> foto, hora e GPS provam que entrou na loja.</p></div>
+        <div class="parada anima d3"><div class="bola"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l9 6"/></svg></div><span class="tag">On Timing</span><h3>Ao vivo, todo dia</h3><p><b>O que é:</b> acompanhamento da peça durante a campanha. <b>Benefício:</b> você sabe se segue montada e sem avaria.</p></div>
+        <div class="parada forte anima d4"><div class="bola"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M10 52V30M24 52V18M38 52V36M52 52V12"/></svg></div><span class="tag">No seu painel</span><h3>Uso total, loja a loja</h3><p>Avarias, trocas e reposição por loja, para comparar com a compra inicial.</p></div>
+      </div>
+    </div>
+    <aside class="roteiro" hidden>Cada módulo do móvel leva um código e um QR. No One Shot, quem instala escaneia na montagem e a foto com GPS prova que a peça entrou na loja. No On Timing, acompanhamos a peça durante a campanha: se segue montada, no lugar e sem avaria. Tudo cai num painel que mostra avarias, trocas e reposição por loja. É isso que permite comparar a compra inicial do móvel com a manutenção, como o briefing pede.</aside>
+  </section>
+
+  <!-- 08 · o projeto e a entrega 75 LAB -->
+  <section class="slide tela escuro piloto" data-titulo="O projeto">
+    <div class="marcas"><span class="eyebrow"><b>(07)</b> O projeto</span></div>
+    <div class="esq">
+      <h2 class="anima">12 semanas. <span>Do protótipo às sete regiões.</span></h2>
+      <p class="lead anima d1">Protótipo físico aprovado antes de produzir, como a Bombril pede. Depois, produção e instalação em MG-CO, SPI, SPC, NO, NE, SUL e RJ.</p>
+      <img class="pk" src="assets/28-oficina-1793383250210-sapolio-lavanda.png" alt="Sapólio Espuma Ativa Lavanda" style="left:560px;top:640px;width:120px">
+      <div class="onda anima d2">
+        <div class="seg s1"><i></i><em>Sem. 1 e 2</em><b>Medidas e KV final</b></div>
+        <div class="seg s2"><i style="transition-delay:.25s"></i><em>Sem. 3 a 5</em><b>Protótipo e teste de carga</b></div>
+        <div class="seg s3"><i style="transition-delay:.5s"></i><em>Sem. 6 a 9</em><b>Produção</b></div>
+        <div class="seg s4"><i style="transition-delay:.75s"></i><em>Sem. 10 a 12</em><b>Logística e instalação com leitura</b></div>
+      </div>
+    </div>
+    <div class="dir">
+      <span class="eyebrow anima"><b>75 LAB</b> entrega de ponta a ponta</span>
+      <ol class="etapas anima d1">
+        <li><b>Diagnóstico do atual</b><span>Avarias, oxidação e reparo nos móveis de hoje.</span></li>
+        <li><b>Proposta 3D e executivo</b><span>Materiais, acabamentos, dimensões e capacidade de carga.</span></li>
+        <li><b>Manual e kit de manutenção</b><span>Códigos, kit básico e reposição pelo time de merchandising.</span></li>
+        <li><b>Produção e instalação</b><span>Fabricação por medida de loja, transporte e montagem com foto.</span></li>
+        <li><b>Leitura semanal</b><span>Loja a loja: montada, de pé e abastecida.</span></li>
+      </ol>
+      <div class="resultado anima d2">Na proposta comercial: <b>compra inicial x manutenção e reposição</b>, por variação dimensional.</div>
+    </div>
+    <p class="fonte">Fonte: Bombril, briefing de MPDV de 23/10/2026 (entregas, regiões e amostra física antes da produção). Datas do cronograma ajustadas na aprovação.</p>
+    <aside class="roteiro" hidden>Em doze semanas a proposta vira móvel instalado. Nas duas primeiras, fechamos medidas e o key visual final. Da terceira à quinta, o protótipo físico e o teste de carga, para a Bombril aprovar antes de produzir. Da sexta à nona, produção. Da décima à décima segunda, logística e instalação nas sete regiões do briefing, com leitura loja a loja. A 75 LAB entrega o diagnóstico, o 3D e o executivo, o manual com kit de manutenção e a comparação entre a compra inicial e a manutenção.</aside>
+  </section>
+
+  <!-- 09 · próximo passo -->
+  <section class="slide tela lime fim" data-titulo="Próximo passo">
+    <div class="marcas"><span class="eyebrow">(08) Próximo passo</span></div>
+    <div class="pergunta">
+      <h2 class="anima">Qual móvel vira protótipo primeiro: o backlight ou o ponto natural?</h2>
+      <div class="acoes anima d1">
+        <a class="botao cheio seta" href="https://wa.me/5511986765634?text=Ol%C3%A1!%20Vi%20a%20proposta%20da%2075%20LAB%20para%20a%20Bombril%20e%20quero%20conversar." target="_blank" rel="noopener">Fale conosco no WhatsApp</a>
+        <a class="botao seta" href="mailto:caique.becker@75lab.com.br?subject=Bombril%20%C3%97%2075%20LAB%20MPDV">Marcar a conversa de trabalho</a>
+      </div>
+    </div>
+    <div class="rodape anima d2">
+      <div><img src="assets/04-oficina-1793383254073-75lab-black.png" alt="Logo 75 LAB">Caique Becker, cofundador e Head de Trade · caique.becker@75lab.com.br<br>Daniel Coimbra, cofundador e CEO · daniel.coimbra@75lab.com.br<br>(11) 98676-5634 · contato@75lab.com.br · 75lab.com.br · @setecincolab</div>
+      <small>75 LAB Estratégia, Design e Produção Ltda · CNPJ 55.470.982/0001-77 · CENU, Centro Empresarial das Nações Unidas, Torre Norte, Av. das Nações Unidas, 12.901, Brooklin, São Paulo, SP, CEP 04578-910</small>
+    </div>
+    <aside class="roteiro" hidden>Para começar precisamos de uma escolha: qual móvel vira protótipo primeiro, o backlight do atacarejo ou o módulo do ponto natural. Com isso, em uma semana trazemos as medidas das lojas e o desenho final. O botão leva direto ao nosso WhatsApp, e nossos contatos estão aqui embaixo.</aside>
+  </section>
+
+  <div id="nav"><i></i></div>
+  <div id="cont">01 / 09</div>
+</div></div>
+
+<div id="caixa" role="dialog" aria-label="Peça ampliada"><button class="fechar">Fechar</button><p id="cxt"></p><img id="cx1" alt=""><div class="abas" id="cxa"></div></div>
+<div id="cursor"></div>
+
+<script>
+(function(){
+  const telas=[...document.querySelectorAll('.tela')];
+  const stage=document.getElementById('stage');
+  const barra=document.querySelector('#nav i');
+  const cont=document.getElementById('cont');
+  let atual=0;
+  function escala(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform='scale('+s+')';}
+  addEventListener('resize',escala);escala();
+  function contar(el){
+    const alvo=parseFloat(el.dataset.conta),casas=+el.dataset.casas||0,t0=performance.now(),dur=1100;
+    (function passo(t){const p=Math.min(1,(t-t0)/dur),v=alvo*(1-Math.pow(1-p,3));el.textContent=v.toFixed(casas).replace('.',',');if(p<1)requestAnimationFrame(passo);})(t0);
+  }
+  function ir(n){
+    n=Math.max(0,Math.min(telas.length-1,n));if(n===atual&&telas[n].classList.contains('ativa'))return;
+    telas[atual].classList.remove('ativa','on');atual=n;telas[n].classList.add('ativa','on');
+    barra.style.width=((n+1)/telas.length*100)+'%';
+    cont.textContent=String(n+1).padStart(2,'0')+' / '+String(telas.length).padStart(2,'0');
+    telas[n].querySelectorAll('[data-conta]').forEach(contar);
+    history.replaceState(null,'','#'+(n+1));
+  }
+  addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1),10);if(!isNaN(n))ir(n-1);});
+  const inicio=parseInt(location.hash.slice(1),10);
+  ir(isNaN(inicio)?0:inicio-1);barra.style.width=((atual+1)/telas.length*100)+'%';
+  document.querySelectorAll('[data-ir]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();ir(+b.dataset.ir);}));
+  addEventListener('keydown',e=>{
+    if(caixa.classList.contains('aberta')){if(e.key==='Escape')fechar();return;}
+    if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();ir(atual+1);}
+    if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();ir(atual-1);}
+    if(e.key==='Home')ir(0);if(e.key==='End')ir(telas.length-1);
+  });
+  // clique na metade direita avança, na esquerda volta (fora de botões, links e peças)
+  document.getElementById('wrap').addEventListener('click',e=>{
+    if(e.target.closest('a,button,.peca,[data-amplia]'))return;
+    ir(e.clientX>innerWidth/2?atual+1:atual-1);
+  });
+  // toque: deslizar
+  let x0=null;addEventListener('touchstart',e=>{x0=e.touches[0].clientX;},{passive:true});
+  addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)ir(dx<0?atual+1:atual-1);x0=null;});
+  // peças: na loja, recortada e o projeto executivo (com PDF e DXF)
+  const caixa=document.getElementById('caixa'),cx1=document.getElementById('cx1'),cxa=document.getElementById('cxa'),cxt=document.getElementById('cxt');
+  function fechar(){caixa.classList.remove('aberta');}
+  function abrir(titulo,vistas,links){
+    cxt.textContent=titulo;cxa.innerHTML='';
+    vistas.forEach(([rot,src],i)=>{const b=document.createElement('button');b.textContent=rot;b.onclick=e=>{e.stopPropagation();cx1.src=src;cxa.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));};cxa.appendChild(b);if(!i)b.click();});
+    (links||[]).forEach(([rot,href])=>{const a=document.createElement('a');a.textContent=rot;a.href=href;a.target='_blank';a.rel='noopener';a.onclick=e=>e.stopPropagation();cxa.appendChild(a);});
+    caixa.classList.add('aberta');
+  }
+  document.querySelectorAll('.peca').forEach(p=>p.addEventListener('click',e=>{e.stopPropagation();
+    abrir(p.dataset.nome,[['Projeto executivo',p.dataset.tecnico]],[['Executivo em PDF',p.dataset.pdf],['DXF',p.dataset.dxf]]);}));
+  document.querySelectorAll('[data-amplia]').forEach(f=>f.addEventListener('click',e=>{e.stopPropagation();abrir('Key visual Bombril',[['Key visual',f.dataset.amplia]]);}));
+  caixa.addEventListener('click',e=>{if(e.target===caixa||e.target.classList.contains('fechar'))fechar();});
+  // cursor em dois tons (só com mouse)
+  const cur=document.getElementById('cursor');
+  addEventListener('mousemove',e=>{document.body.classList.add('tem-mouse');cur.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';
+    cur.classList.toggle('sobre',!!e.target.closest('a,button,.peca,[data-amplia]'));},{passive:true});
+  addEventListener('touchstart',()=>document.body.classList.remove('tem-mouse'),{passive:true});
+})();
+</script>
+<script data-kit-deck-js="1.1.0">
+/* =====================================================================
+   KIT DE DECK 75 LAB · v1.0.0 (13/10/2026) · motor + componentes
+   Origem: código dos decks Parmalat Fit Hub e Lactalis Food Service.
+   O motor da agência injeta este arquivo antes do </body> quando o deck tem
+   <html data-kit-deck>. O designer escreve só a marcação (ver README.md).
+   Abaixo de 900 px o kit não escala nem prende a rolagem: a base de celular
+   (deck-base) assume. API: window.KIT.ir(n), KIT.atual, KIT.aoEntrar(n, fn).
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (window.KIT) return;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var H = document.documentElement;
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var MOB = Math.min(innerWidth, screen.width || innerWidth) < 900 || H.classList.contains('mob') || (document.body && document.body.classList.contains('mob'));
+  H.classList.add('k-js');
+  if (MOB) H.classList.add('k-mob');
+
+  var slides = $$('.slide');
+  var N = slides.length;
+  if (!N) return;
+
+  /* ---------- palco ---------- */
+  var palco = $('#palco');
+  if (!palco) { palco = slides[0].parentElement; palco.id = 'palco'; }
+  if (!$('#k-deck')) { var dk = document.createElement('div'); dk.id = 'k-deck'; palco.parentNode.insertBefore(dk, palco); dk.appendChild(palco); }
+  function fit() {
+    if (MOB) { palco.style.transform = ''; return; }
+    var k = Math.min(innerWidth / 1600, innerHeight / 900);
+    palco.style.transform = 'scale(' + (k > 0 ? k : 1) + ')';
+  }
+  addEventListener('resize', function () {
+    var m = Math.min(innerWidth, screen.width || innerWidth) < 900;
+    if (m !== MOB) { location.reload(); return; }
+    fit();
+  });
+  fit();
+
+  /* ---------- chrome (cabeçalho com 2 logos, rodapé, progresso, índice, grão, cinema) ---------- */
+  var cliente = H.getAttribute('data-cliente') || '';
+  var LOGO = {
+    cli: H.getAttribute('data-logo-cliente'), cliE: H.getAttribute('data-logo-cliente-escuro'),
+    lab: H.getAttribute('data-logo-75lab') || 'https://75lab.com.br/img/logo-wordmark-black.png',
+    labE: H.getAttribute('data-logo-75lab-escuro') || 'https://75lab.com.br/img/logo-wordmark-lime.png'
+  };
+  var SETA = '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var SETAV = '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+  function el(tag, attrs, html) { var e = document.createElement(tag); for (var a in attrs) e.setAttribute(a, attrs[a]); if (html) e.innerHTML = html; return e; }
+  if (!MOB) {
+    palco.appendChild(el('div', { id: 'k-prog', 'aria-hidden': 'true' }));
+    palco.appendChild(el('div', { id: 'k-grao', 'aria-hidden': 'true' }));
+    palco.appendChild(el('div', { id: 'k-cineT', class: 'k-cine', 'aria-hidden': 'true' }));
+    palco.appendChild(el('div', { id: 'k-cineB', class: 'k-cine', 'aria-hidden': 'true' }));
+    palco.appendChild(el('div', { id: 'k-varre', 'aria-hidden': 'true' }));
+    if (LOGO.cli || H.hasAttribute('data-logo-75lab')) {
+      palco.appendChild(el('header', { id: 'k-topo', class: 'k-ui' },
+        (LOGO.cli ? '<img id="k-lcli" src="' + LOGO.cli + '" alt="Logo ' + cliente + '"><span class="k-x"></span>' : '') +
+        '<img id="k-llab" src="' + LOGO.lab + '" alt="Logo 75 LAB"><span class="k-sp"></span><span class="k-cap" id="k-cap"></span>'));
+    }
+    palco.appendChild(el('nav', { id: 'k-pe', class: 'k-ui', 'aria-label': 'Navegação' },
+      '<div id="k-trilha"></div><span class="k-sp"></span>' +
+      '<button class="k-nb" id="k-ind" aria-label="Índice (tecla M)"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>' +
+      '<button class="k-nb" id="k-ant" aria-label="Tela anterior">' + SETAV + '</button><span id="k-cont"></span>' +
+      '<button class="k-nb" id="k-prox" aria-label="Próxima tela">' + SETA + '</button>'));
+    var ind = el('div', { id: 'k-indice', role: 'dialog', 'aria-label': 'Índice' }, '<div class="k-rotulo" style="color:#fff">Índice <b>M</b> abre e fecha</div><ol></ol>');
+    palco.appendChild(ind);
+    slides.forEach(function (s, i) {
+      var t = s.getAttribute('data-titulo') || ('Tela ' + (i + 1));
+      $('#k-trilha').appendChild(el('button', { 'data-ir': i + 1, 'aria-label': t, title: t }, '<i></i>'));
+      $('ol', ind).appendChild(el('li', {}, '<button data-ir="' + (i + 1) + '"><em>' + String(i + 1).padStart(2, '0') + '</em>' + t + '</button>'));
+    });
+  }
+
+  /* ---------- números animados ---------- */
+  function fmt(v, dec) { return v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec }); }
+  function contar(e, atraso) {
+    var alvo = parseFloat(String(e.getAttribute('data-conta')).replace(',', '.'));
+    if (isNaN(alvo)) return;
+    var dec = +(e.getAttribute('data-dec') || 0), pre = e.getAttribute('data-pre') || '', suf = e.getAttribute('data-suf') || '';
+    var small = e.querySelector('small'); var sufHtml = small ? small.outerHTML : '';
+    function pinta(v) { e.innerHTML = pre + fmt(v, dec) + suf + sufHtml; }
+    if (RM || MOB) { pinta(alvo); return; }
+    clearTimeout(e._kt); cancelAnimationFrame(e._kr); pinta(0);
+    e._kt = setTimeout(function () {
+      var t0 = performance.now(), D = +(e.getAttribute('data-dur') || 1100);
+      (function passo(t) { var p = Math.min(1, (t - t0) / D), q = 1 - Math.pow(1 - p, 3); pinta(alvo * q); if (p < 1) e._kr = requestAnimationFrame(passo); })(t0);
+    }, atraso || 0);
+  }
+
+  /* ---------- navegação ---------- */
+  var cur = -1, ocupado = false, entrar = {}, sair = {};
+  function claro(s) { return s.classList.contains('k-escuro') || s.classList.contains('k-capa') || s.getAttribute('data-ui') === 'claro'; }
+  function chrome(n) {
+    if (MOB) return;
+    var s = slides[n], c = claro(s);
+    palco.classList.toggle('k-ui-claro', c);
+    palco.classList.toggle('k-na-capa', s.classList.contains('k-capa'));
+    var lc = $('#k-lcli'), ll = $('#k-llab');
+    if (lc && LOGO.cliE) lc.src = c ? LOGO.cliE : LOGO.cli;
+    if (ll) ll.src = c ? LOGO.labE : LOGO.lab;
+    $('#k-cont').innerHTML = '<b>' + String(n + 1).padStart(2, '0') + '</b> / ' + String(N).padStart(2, '0');
+    $('#k-prog').style.width = ((n + 1) / N * 100) + '%';
+    var cap = $('#k-cap'); if (cap) cap.textContent = s.getAttribute('data-capitulo') || '';
+    $$('#k-trilha button').forEach(function (b, i) { b.classList.toggle('on', i === n); });
+    $$('#k-indice button').forEach(function (b, i) { b.classList.toggle('on', i === n); });
+  }
+  function aoEntrar(s, n) {
+    s.classList.remove('in'); void s.offsetWidth;
+    setTimeout(function () { s.classList.add('in'); }, 30);
+    $$('[data-conta]', s).forEach(function (e, i) { contar(e, 200 + i * 90); });
+    $$('[data-k]', s).forEach(function (c) { c._kEntrar && c._kEntrar(); });
+    (entrar[n] || []).forEach(function (f) { try { f(s); } catch (e) {} });
+    try { history.replaceState(null, '', '#' + (n + 1)); } catch (e) {}
+  }
+  function ir(n, dir) {
+    n = Math.max(0, Math.min(N - 1, n));
+    if (n === cur || ocupado) return;
+    var ind = $('#k-indice'); if (ind) ind.classList.remove('on');
+    var ant = slides[cur], prox = slides[n];
+    dir = dir || (n > cur ? 1 : -1);
+    if (ant) { $$('[data-k]', ant).forEach(function (c) { c._kSair && c._kSair(); }); (sair[cur] || []).forEach(function (f) { try { f(ant); } catch (e) {} }); }
+    if (!ant || RM) {
+      if (ant) ant.classList.remove('on', 'in');
+      prox.classList.add('on'); cur = n; chrome(n); aoEntrar(prox, n); return;
+    }
+    ocupado = true;
+    var tr = prox.getAttribute('data-transicao') || 'corte';
+    ant.classList.add('k-sai'); ant.classList.remove('on');
+    prox.classList.add('on', 'k-entra'); prox.classList.toggle('k-volta', dir < 0);
+    if (tr === 'corte') { palco.classList.add('k-cortando'); setTimeout(function () { palco.classList.remove('k-cortando'); }, 520); }
+    if (tr === 'cortina') { var v = $('#k-varre'); v.classList.remove('vai', 'volta'); void v.offsetWidth; v.classList.add('vai'); v.classList.toggle('volta', dir < 0); }
+    cur = n; chrome(n); aoEntrar(prox, n);
+    setTimeout(function () { ant.classList.remove('k-sai', 'in'); prox.classList.remove('k-entra', 'k-volta'); ocupado = false; }, 720);
+  }
+  window.KIT = { ir: function (n) { ir(n - 1); }, get atual() { return cur + 1; }, aoEntrar: function (n, f) { (entrar[n - 1] = entrar[n - 1] || []).push(f); }, aoSair: function (n, f) { (sair[n - 1] = sair[n - 1] || []).push(f); }, contar: contar };
+
+  if (!MOB) {
+    addEventListener('keydown', function (e) {
+      if (/INPUT|TEXTAREA|SELECT/.test((e.target || {}).tagName || '')) return;
+      if ($('#k-lb') && $('#k-lb').classList.contains('on')) { if (e.key === 'Escape') fecharLb(); else if (e.key === 'ArrowRight') passoLb(1); else if (e.key === 'ArrowLeft') passoLb(-1); return; }
+      if (['ArrowRight', 'PageDown', ' ', 'Enter'].indexOf(e.key) >= 0) { e.preventDefault(); ir(cur + 1, 1); }
+      else if (['ArrowLeft', 'PageUp', 'Backspace'].indexOf(e.key) >= 0) { e.preventDefault(); ir(cur - 1, -1); }
+      else if (e.key === 'Home') ir(0); else if (e.key === 'End') ir(N - 1);
+      else if (e.key === 'm' || e.key === 'M') $('#k-indice').classList.toggle('on');
+      else if (e.key === 'f' || e.key === 'F') { document.fullscreenElement ? document.exitFullscreen() : (H.requestFullscreen && H.requestFullscreen()); }
+      else if (e.key === 'Escape') $('#k-indice').classList.remove('on');
+    });
+    var tr0 = 0;
+    addEventListener('wheel', function (e) {
+      if (e.target.closest && e.target.closest('iframe, .k-rola')) return;
+      var t = Date.now(); if (t - tr0 < 900 || Math.abs(e.deltaY) < 20) return; tr0 = t; ir(cur + (e.deltaY > 0 ? 1 : -1));
+    }, { passive: true });
+    var tx = null, ty = 0;
+    addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+    addEventListener('touchend', function (e) {
+      if (tx === null) return; var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; tx = null;
+      if (e.target.closest && e.target.closest('.k-ad')) return;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) ir(cur + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    $('#k-ant').onclick = function () { ir(cur - 1, -1); };
+    $('#k-prox').onclick = function () { ir(cur + 1, 1); };
+    $('#k-ind').onclick = function () { $('#k-indice').classList.toggle('on'); };
+  }
+  document.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-ir], [data-go]');
+    if (g && !g.closest('.k-pontos, .k-grafico')) {
+      var n = g.hasAttribute('data-ir') ? +g.getAttribute('data-ir') - 1 : +g.getAttribute('data-go');
+      if (MOB) { var alvo = slides[n]; if (alvo) alvo.scrollIntoView({ behavior: 'smooth' }); } else ir(n);
+      return;
+    }
+    var im = e.target.closest('img.k-zoom');
+    if (im) abrirLb(im);
+  });
+
+  /* ---------- lightbox: toda imagem de conteúdo amplia ---------- */
+  var lb = el('div', { id: 'k-lb', role: 'dialog', 'aria-label': 'Imagem ampliada' }, '<img alt=""><button id="k-lbX" aria-label="Fechar">×</button><button id="k-lbP" aria-label="Anterior">‹</button><button id="k-lbN" aria-label="Próxima">›</button>');
+  document.body.appendChild(lb);
+  var lbL = [], lbI = 0;
+  $$('.slide img').forEach(function (im) {
+    if (im.closest('#k-topo, .k-capa-logos, .k-fim-logos, .k-pontos, .k-ad, .k-qr, [class*=logo]') || /logo/i.test((im.getAttribute('src') || '') + ' ' + im.className + ' ' + (im.alt || '')) || im.classList.contains('k-sem-zoom')) return;
+    im.classList.add('k-zoom'); if (!im.hasAttribute('data-cursor')) im.setAttribute('data-cursor', 'Ampliar');
+  });
+  function abrirLb(im) { lbL = $$('img.k-zoom', im.closest('.slide') || document); lbI = Math.max(0, lbL.indexOf(im)); pintaLb(); lb.classList.add('on'); }
+  function pintaLb() { var im = lbL[lbI]; $('img', lb).src = im.getAttribute('data-grande') || im.currentSrc || im.src; $('img', lb).alt = im.alt || ''; $('#k-lbP').style.display = $('#k-lbN').style.display = lbL.length > 1 ? '' : 'none'; }
+  function passoLb(d) { if (lbL.length < 2) return; lbI = (lbI + d + lbL.length) % lbL.length; pintaLb(); }
+  function fecharLb() { lb.classList.remove('on'); }
+  $('#k-lbX').onclick = fecharLb; $('#k-lbP').onclick = function (e) { e.stopPropagation(); passoLb(-1); }; $('#k-lbN').onclick = function (e) { e.stopPropagation(); passoLb(1); };
+  lb.addEventListener('click', function (e) { if (e.target === lb) fecharLb(); });
+
+  /* ---------- cursor em dois tons com rótulo ---------- */
+  if (!MOB && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    var cu = el('div', { id: 'k-cur', 'aria-hidden': 'true' }, '<span></span>'), dt = el('div', { id: 'k-dot', 'aria-hidden': 'true' });
+    document.body.appendChild(cu); document.body.appendChild(dt);
+    var mx = -100, my = -100, cx = -100, cy = -100;
+    addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY; document.body.classList.add('k-cur-on');
+      dt.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+      var t = e.target.closest && e.target.closest('button, a, input, label, [data-ir], [data-go], img.k-zoom, .k-ad, model-viewer, [data-cursor]');
+      document.body.classList.toggle('k-hov', !!t);
+      var L = t ? (t.getAttribute('data-cursor') || (t.matches('.k-ad') ? 'Arraste' : t.matches('model-viewer') ? 'Girar' : '')) : '';
+      $('span', cu).textContent = L; document.body.classList.toggle('k-rot', !!L);
+    });
+    document.addEventListener('mouseleave', function () { document.body.classList.remove('k-cur-on'); });
+    (function loop() { cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2; cu.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop); })();
+  }
+
+  /* ---------- COMPONENTES ---------- */
+  function ativa(c) { var s = c.closest('.slide'); return MOB || (s && s.classList.contains('on')); }
+
+  // gráfico com abas: .k-barra data-rotulo + data-valores="34,41" (um valor por aba), nota com data-textos="a|b"
+  $$('[data-k="grafico"]').forEach(function (g) {
+    g.setAttribute('data-bc-manter', ''); // a base de celular mantém as barras como estão
+    var abas = $$('.k-abas button', g), barras = $$('.k-barra', g), nota = $('.k-g-nota', g);
+    var suf = g.getAttribute('data-suf') || '', dec = +(g.getAttribute('data-dec') || 0);
+    var vals = barras.map(function (b) { return String(b.getAttribute('data-valores') || '0').split(',').map(function (x) { return parseFloat(x.replace(',', '.')) || 0; }); });
+    var max = +(g.getAttribute('data-max') || 0) || Math.max.apply(null, [].concat.apply([], vals)) * 1.08 || 1;
+    var textos = nota ? String(nota.getAttribute('data-textos') || '').split('|') : [];
+    barras.forEach(function (b) {
+      if (!b.querySelector('.k-b-trilho')) b.innerHTML = '<span class="k-b-rot">' + (b.getAttribute('data-rotulo') || '') + '</span><span class="k-b-trilho"><span class="k-b-fill"></span></span><span class="k-b-val" data-conta="0" data-dec="' + dec + '" data-suf="' + suf + '">0</span>';
+    });
+    var atual = 0, tocou = false, it = null;
+    function mostra(i) {
+      atual = i;
+      abas.forEach(function (a, k) { a.classList.toggle('on', k === i); a.setAttribute('aria-selected', k === i); });
+      barras.forEach(function (b, k) { var v = vals[k][i] != null ? vals[k][i] : vals[k][0]; $('.k-b-fill', b).style.width = Math.min(100, v / max * 100) + '%'; var e = $('.k-b-val', b); e.setAttribute('data-conta', v); contar(e, k * 60); });
+      if (nota && textos[i]) { nota.classList.add('h'); setTimeout(function () { nota.textContent = textos[i]; nota.classList.remove('h'); }, 260); }
+    }
+    abas.forEach(function (a, k) { a.setAttribute('role', 'tab'); a.addEventListener('click', function () { tocou = true; clearInterval(it); mostra(k); }); });
+    g._kEntrar = function () { tocou = false; mostra(0); clearInterval(it); if (abas.length > 1 && !RM) it = setInterval(function () { if (tocou || !ativa(g)) return clearInterval(it); mostra((atual + 1) % abas.length); }, 4200); };
+    g._kSair = function () { clearInterval(it); };
+    if (MOB) mostra(0);
+  });
+
+  // imagem com pontos clicáveis: .k-ponto (left/top em %) com data-titulo e data-texto; info em .k-pontos-info da tela
+  $$('[data-k="pontos"]').forEach(function (c) {
+    var pts = $$('.k-ponto', c), s = c.closest('.slide') || document, info = $('.k-pontos-info', s), lista = $('.k-pontos-lista', s);
+    if (lista && !lista.children.length) pts.forEach(function (p, i) { lista.appendChild(el('button', { type: 'button', 'data-p': i }, '<b>' + String(i + 1).padStart(2, '0') + '</b>' + (p.getAttribute('data-titulo') || ''))); });
+    var bts = lista ? $$('button', lista) : [];
+    pts.forEach(function (p, i) { if (!p.textContent.trim()) p.textContent = i + 1; p.setAttribute('aria-label', p.getAttribute('data-titulo') || ('Ponto ' + (i + 1))); });
+    var atual = 0, tocou = false, it = null;
+    function mostra(i) {
+      atual = i;
+      pts.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+      bts.forEach(function (b, k) { b.classList.toggle('on', k === i); });
+      if (info) { info.classList.add('h'); setTimeout(function () { var h = $('h3', info), t = $('p', info); if (h) h.textContent = pts[i].getAttribute('data-titulo') || ''; if (t) t.textContent = pts[i].getAttribute('data-texto') || ''; info.classList.remove('h'); }, 220); }
+    }
+    pts.forEach(function (p, k) { p.addEventListener('click', function () { tocou = true; clearInterval(it); mostra(k); }); });
+    bts.forEach(function (b, k) { b.addEventListener('click', function () { tocou = true; clearInterval(it); mostra(k); }); });
+    c._kEntrar = function () { tocou = false; mostra(0); clearInterval(it); if (!RM) it = setInterval(function () { if (tocou || !ativa(c)) return clearInterval(it); mostra((atual + 1) % pts.length); }, 3600); };
+    c._kSair = function () { clearInterval(it); };
+    if (pts.length) mostra(0);
+  });
+
+  // antes e depois arrastável: .k-ad-antes + .k-ad-depois + input range
+  $$('[data-k="antes-depois"]').forEach(function (c) {
+    if (!$('.k-ad-linha', c)) c.appendChild(el('span', { class: 'k-ad-linha', 'aria-hidden': 'true' }));
+    var r = $('input[type=range]', c);
+    if (!r) { r = el('input', { type: 'range', min: '0', max: '100', value: '50', 'aria-label': 'Arraste para comparar' }); c.appendChild(r); }
+    function pos(v) { c.style.setProperty('--pos', v + '%'); r.value = v; }
+    var tocou = false, raf = 0;
+    r.addEventListener('input', function () { tocou = true; cancelAnimationFrame(raf); pos(+r.value); });
+    c._kEntrar = function () {
+      tocou = false; if (RM) { pos(50); return; }
+      var t0 = performance.now();
+      (function anima(t) { if (tocou) return; var p = Math.min(1, (t - t0) / 2600); pos(50 + Math.sin(p * Math.PI * 2) * 32 * (1 - p)); if (p < 1) raf = requestAnimationFrame(anima); })(t0);
+    };
+    pos(50);
+  });
+
+  // QR code (wa.me, página de AR, página do produto): data-url
+  var qrs = $$('[data-k="qr"]');
+  if (qrs.length) {
+    var sc = document.createElement('script');
+    sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+    sc.onload = function () {
+      qrs.forEach(function (q) {
+        try { var c = window.qrcode(0, 'M'); c.addData(q.getAttribute('data-url') || location.href); c.make(); q.innerHTML = c.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); var sv = q.querySelector('svg'); if (sv) sv.setAttribute('aria-label', 'QR code'); }
+        catch (e) { q.innerHTML = '<a href="' + q.getAttribute('data-url') + '">' + q.getAttribute('data-url') + '</a>'; }
+      });
+    };
+    sc.onerror = function () { qrs.forEach(function (q) { q.innerHTML = '<a href="' + q.getAttribute('data-url') + '" style="font-size:12px;word-break:break-all">' + q.getAttribute('data-url') + '</a>'; }); };
+    document.head.appendChild(sc);
+  }
+
+  // 3D e AR: <model-viewer> carrega a biblioteca só se existir no deck
+  if ($('model-viewer') && !customElements.get('model-viewer')) {
+    var mv = document.createElement('script'); mv.type = 'module';
+    mv.src = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
+    document.head.appendChild(mv);
+  }
+
+  /* ---------- partida ---------- */
+  if (MOB) {
+    slides.forEach(function (s) { s.classList.add('on', 'in'); });
+    $$('[data-conta]').forEach(function (e) { contar(e, 0); });
+    return;
+  }
+  var h = parseInt((location.hash || '').slice(1), 10);
+  ir(h > 0 && h <= N ? h - 1 : 0);
+  addEventListener('hashchange', function () { var x = parseInt(location.hash.slice(1), 10); if (x > 0 && x <= N && x - 1 !== cur) ir(x - 1); });
+})();
+</script>
+<div id="painel-roteiro" data-modo-apresentador hidden style="position:fixed;left:16px;right:16px;bottom:16px;max-height:38vh;overflow:auto;z-index:99999;background:rgba(17,17,17,.94);color:#f4f4f0;font:16px/1.5 'Space Grotesk',Arial,sans-serif;padding:16px 20px;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.35)"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:6px"><b id="painel-roteiro-t" style="font:700 13px 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#C0EE4E">Roteiro</b><button type="button" onclick="document.getElementById('painel-roteiro').hidden=true" aria-label="Fechar roteiro" style="min-width:44px;min-height:44px;background:none;border:1px solid #555;color:#fff;border-radius:8px;cursor:pointer">×</button></div><div id="painel-roteiro-x"></div></div>
+<button type="button" id="botao-roteiro" aria-label="Abrir o roteiro de fala" style="position:fixed;right:16px;top:16px;z-index:99998;min-width:44px;min-height:44px;padding:0 14px;border-radius:22px;border:1px solid rgba(0,0,0,.15);background:rgba(255,255,255,.85);font:600 13px 'Space Grotesk',Arial,sans-serif;cursor:pointer;opacity:.55">Roteiro</button>
+<script>(function(){var P=document.getElementById('painel-roteiro'),X=document.getElementById('painel-roteiro-x'),T=document.getElementById('painel-roteiro-t');function atual(){var s=[].slice.call(document.querySelectorAll('.slide, section.tela, [data-slide]'));var v=s.filter(function(e){var c=getComputedStyle(e),r=e.getBoundingClientRect();return c.display!=='none'&&c.visibility!=='hidden'&&parseFloat(c.opacity||'1')>.3&&r.bottom>0&&r.top<innerHeight})[0];return {s:v,i:s.indexOf(v)}}function abrir(){var a=atual();if(!a.s)return;var r=a.s.querySelector('.roteiro');X.textContent=r?r.textContent.replace(/\s+/g,' ').trim():'Sem roteiro nesta tela.';T.textContent='Roteiro · tela '+(a.i+1);P.hidden=false}document.getElementById('botao-roteiro').onclick=function(){P.hidden?abrir():P.hidden=true};addEventListener('keydown',function(e){if((e.key==='r'||e.key==='R')&&!e.metaKey&&!e.ctrlKey){P.hidden?abrir():P.hidden=true}else if(!P.hidden&&/Arrow|Page| /.test(e.key)){setTimeout(abrir,60)}});})();</script>
+<style data-base-deck="1.0.0">
+/* Base de deck da agência 75 LAB: modo celular (html.bc-cel). No computador nada muda: todas as regras ficam presas a
+   html.bc-cel, ligado pelo deck-base.cliente.js só abaixo de 900 px de largura (ou quando o próprio deck entrou no modo
+   celular dele). No celular cada tela vira uma seção empilhada, fundo claro, tipografia por papel e navegação na margem. */
+html.bc-cel{--bc-papel:#F2F1E9;--bc-papel2:#FAF9F4;--bc-tinta:#111110;--bc-tinta2:#3a3a36;--bc-suave:#66665f;--bc-linha:rgba(17,17,16,.12);--bc-cartao:#FFFFFF;--bc-acento:#01A290;--bc-mx:22px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html.bc-cel,html.bc-cel body{width:auto!important;height:auto!important;min-height:0!important;max-width:none!important;max-height:none!important;overflow-x:hidden!important;overflow-y:auto!important;position:static!important;background:var(--bc-papel)!important;cursor:auto!important;touch-action:pan-y pinch-zoom!important;overscroll-behavior:auto!important;zoom:1!important}
+@supports (overflow:clip){html.bc-cel,html.bc-cel body{overflow-x:clip!important}}
+html.bc-cel body{margin:0!important;padding:0!important;user-select:auto!important;-webkit-user-select:auto!important}
+html.bc-cel *{cursor:auto!important}
+html.bc-cel *,html.bc-cel *::before,html.bc-cel *::after{touch-action:auto!important}
+/* palco do deck (stage e quem estiver entre o body e as telas) */
+html.bc-cel [data-bc-palco]{position:static!important;transform:none!important;scale:none!important;translate:none!important;width:auto!important;height:auto!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;inset:auto!important;overflow:visible!important;display:block!important;background:transparent!important;zoom:1!important;opacity:1!important;visibility:visible!important;filter:none!important;clip-path:none!important}
+/* cromo do deck (setas, pontos, contador, cursor, cabeçalho fixo, botão de roteiro): some no celular */
+html.bc-cel [data-bc-cromo],html.bc-cel [data-bc-deco],html.bc-cel [data-bc-oculto]{display:none!important}
+html.bc-cel [data-bc-tela] [data-bc-oculto][data-bc-oculto][data-bc-oculto],html.bc-cel [data-bc-tela] [data-bc-deco][data-bc-deco][data-bc-deco]{display:none!important}
+html.bc-cel .bc-rodape{display:flex!important;justify-content:center;padding:28px 22px 44px;background:var(--bc-papel)}
+html.bc-cel .bc-rodape #botao-roteiro{position:static!important;opacity:.8!important;min-height:44px}
+html.bc-cel #painel-roteiro{left:12px!important;right:12px!important;bottom:12px!important;max-height:50svh!important}
+/* cada tela vira uma seção */
+html.bc-cel [data-bc-tela]{position:relative!important;inset:auto!important;display:block!important;float:none!important;width:auto!important;max-width:none!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:60px max(var(--bc-mx),calc((100vw - 660px)/2)) 52px!important;opacity:1!important;visibility:visible!important;transform:none!important;scale:none!important;translate:none!important;filter:none!important;clip-path:none!important;overflow:hidden!important;background:var(--bc-papel)!important;background-image:none!important;color:var(--bc-tinta)!important;pointer-events:auto!important;transition:none!important;animation:none!important;content-visibility:visible!important;scroll-snap-align:start;scroll-margin-top:0;border-top:1px solid var(--bc-linha)!important;box-shadow:none!important;z-index:auto!important;text-align:left!important}
+html.bc-cel [data-bc-tela][data-bc-par]{background:var(--bc-papel2)!important}
+html.bc-cel [data-bc-tela]:first-of-type,html.bc-cel [data-bc-tela="1"]{border-top:0!important}
+html.bc-cel [data-bc-tela]::before,html.bc-cel [data-bc-tela]::after{display:none!important}
+/* tudo dentro da tela entra no fluxo: sem posição absoluta, sem transformação, nada mais largo que a tela */
+html.bc-cel [data-bc-tela] *:not(svg):not(svg *):not([data-bc-manter]):not([data-bc-manter] *){position:static!important;inset:auto!important;float:none!important;transform:none!important;scale:none!important;translate:none!important;rotate:none!important;min-width:0!important;max-width:100%!important;transition:none!important;clip-path:none!important;writing-mode:horizontal-tb!important;column-count:auto!important;columns:auto!important;z-index:auto!important;mix-blend-mode:normal!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html.bc-cel [data-bc-tela] *::before,html.bc-cel [data-bc-tela] *::after{max-width:100%!important}
+html.bc-cel [data-bc-tela] [data-bc-c]{width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;flex:0 1 auto!important;align-self:stretch!important;justify-self:stretch!important;margin-left:0!important;margin-right:0!important;text-overflow:clip!important}
+html.bc-cel [data-bc-tela] [data-bc-c][data-bc-c="inline"]{width:fit-content!important;max-width:100%!important;align-self:flex-start!important;justify-self:start!important}
+html.bc-cel [data-bc-tela] svg{max-width:100%!important;transform:none!important;rotate:none!important;position:static!important;inset:auto!important}
+html.bc-cel [data-bc-tela] svg *{stroke-dashoffset:0!important;animation:none!important;transition:none!important}
+html.bc-cel [data-bc-tela] svg[data-bc-svg="grafico"]{width:100%!important;height:auto!important;display:block!important}
+html.bc-cel [data-bc-tela] svg[data-bc-svg="icone"]{max-width:44px!important;max-height:44px!important}
+html.bc-cel [data-bc-tela] [data-bc-ancora]{position:relative!important}
+html.bc-cel [data-bc-tela] [data-bc-ancora]::before,html.bc-cel [data-bc-tela] [data-bc-ancora]::after{max-height:100%!important;max-width:100%!important}
+/* grades e linhas */
+html.bc-cel [data-bc-tela] [data-bc-grade]{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:none!important;grid-template-areas:none!important;grid-auto-flow:row!important;grid-auto-rows:auto!important;gap:14px!important;align-items:stretch!important;justify-items:stretch!important;align-content:start!important}
+html.bc-cel [data-bc-tela] [data-bc-grade="2"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+html.bc-cel [data-bc-tela] [data-bc-grade="logos"]{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;align-items:center!important}
+html.bc-cel [data-bc-tela] [data-bc-grade="galeria"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+html.bc-cel [data-bc-tela] [data-bc-grade="galeria"] img{width:100%!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover!important;margin:0!important;max-height:none!important}
+html.bc-cel [data-bc-tela] [data-bc-grade]>*{grid-column:auto!important;grid-row:auto!important;grid-area:auto!important}
+html.bc-cel [data-bc-tela] [data-bc-linha="coluna"]{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;align-items:stretch!important;justify-content:flex-start!important;gap:14px!important}
+html.bc-cel [data-bc-tela] [data-bc-linha="fica"]{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;gap:10px 14px!important}
+html.bc-cel [data-bc-tela] [data-bc-linha="fica"]>*{flex:0 1 auto!important;width:auto!important}
+html.bc-cel [data-bc-tela] [data-bc-tabela]{display:block!important}
+/* cartões */
+html.bc-cel [data-bc-tela] [data-bc-cartao]{border-radius:inherit;padding:18px 18px!important;box-shadow:none!important}
+html.bc-cel [data-bc-tela] [data-bc-cartao="claro"]{background:var(--bc-cartao)!important;border:1px solid var(--bc-linha)!important;color:var(--bc-tinta)!important}
+html.bc-cel [data-bc-tela] [data-bc-camada]{background:transparent!important;background-image:none!important;border-color:transparent!important;box-shadow:none!important;padding:0!important}
+/* imagens */
+html.bc-cel [data-bc-tela] img,html.bc-cel [data-bc-tela] video,html.bc-cel [data-bc-tela] picture,html.bc-cel [data-bc-tela] canvas{max-width:100%!important;height:auto!important;opacity:1!important;filter:none!important}
+html.bc-cel [data-bc-tela] [data-bc-img="foto"]{display:block!important;width:100%!important;height:auto!important;max-height:72svh!important;object-fit:cover!important;object-position:center!important;margin:6px 0 18px!important;border-radius:0!important;aspect-ratio:auto!important}
+html.bc-cel [data-bc-tela] [data-bc-img="foto"][data-bc-alta]{width:auto!important;max-width:100%!important;max-height:60svh!important;margin-left:auto!important;margin-right:auto!important;object-fit:contain!important}
+html.bc-cel [data-bc-tela] [data-bc-img="capa"]{display:block!important;width:calc(100% + 2 * max(var(--bc-mx),calc((100vw - 660px)/2)))!important;max-width:none!important;margin:-60px calc(-1 * max(var(--bc-mx),calc((100vw - 660px)/2))) 26px!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover!important;object-position:center!important;border-radius:0!important}
+html.bc-cel [data-bc-tela] [data-bc-img="logo"]{display:inline-block!important;width:auto!important;height:auto!important;max-width:150px!important;max-height:42px!important;object-fit:contain!important;margin:0!important;vertical-align:middle}
+html.bc-cel [data-bc-tela] [data-bc-grade="logos"] [data-bc-img="logo"]{max-width:100%!important;max-height:40px!important;margin:0 auto!important;display:block!important}
+html.bc-cel [data-bc-tela] [data-bc-img="icone"]{display:inline-block!important;width:auto!important;height:auto!important;max-width:44px!important;max-height:44px!important;object-fit:contain!important;margin:0 0 8px!important}
+html.bc-cel [data-bc-tela] [data-bc-fundo]{display:block!important;width:calc(100% + 2 * max(var(--bc-mx),calc((100vw - 660px)/2)))!important;max-width:none!important;height:auto!important;aspect-ratio:4/3;margin:-60px calc(-1 * max(var(--bc-mx),calc((100vw - 660px)/2))) 26px!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;opacity:1!important;filter:none!important;border-radius:0!important}
+html.bc-cel [data-bc-tela] [data-bc-fundo="meio"]{width:100%!important;margin:6px 0 18px!important;aspect-ratio:16/10}
+html.bc-cel [data-bc-tela] iframe{width:100%!important;height:70svh!important;border:0}
+html.bc-cel [data-bc-tela] [data-bc-mapa]>img{width:100%!important;height:auto!important;max-height:none!important;margin:0!important}
+html.bc-cel [data-bc-tela] model-viewer{width:100%!important;height:56svh!important}
+/* texto por papel */
+html.bc-cel [data-bc-tela] [data-bc-papel]{white-space:normal!important;overflow-wrap:break-word!important;word-break:normal!important;hyphens:manual;text-overflow:clip!important;max-width:100%!important;-webkit-line-clamp:unset!important;line-clamp:none!important;text-indent:0!important}
+html.bc-cel [data-bc-tela] [data-bc-papel="capa"]{font-size:clamp(38px,11.2vw,54px)!important;line-height:1.04!important;letter-spacing:-.01em!important;margin:0 0 16px!important;text-wrap:balance}
+html.bc-cel [data-bc-tela] [data-bc-papel="titulo"]{font-size:clamp(29px,8.4vw,40px)!important;line-height:1.06!important;letter-spacing:-.005em!important;margin:0 0 16px!important;text-wrap:balance}
+html.bc-cel [data-bc-tela] [data-bc-papel="titulo3"]{font-size:28px!important;line-height:1.1!important;letter-spacing:0!important;margin:0 0 8px!important;text-wrap:balance}
+html.bc-cel [data-bc-tela] [data-bc-papel="subtitulo"]{font-size:clamp(19px,5.4vw,23px)!important;line-height:1.28!important;letter-spacing:0!important;margin:0 0 8px!important}
+html.bc-cel [data-bc-tela] [data-bc-papel="corpo"]{font-size:clamp(16px,4.4vw,18px)!important;line-height:1.5!important;letter-spacing:0!important;margin:0 0 12px!important}
+html.bc-cel [data-bc-tela] [data-bc-papel="apoio"]{font-size:16px!important;line-height:1.45!important;letter-spacing:0!important;margin:0 0 8px!important}
+html.bc-cel [data-bc-tela] [data-bc-papel="rotulo"]{font-size:13px!important;line-height:1.4!important;letter-spacing:.1em!important;margin:0 0 10px!important}
+html.bc-cel [data-bc-tela] [data-bc-papel="numero"]{white-space:nowrap!important;line-height:1!important;letter-spacing:-.01em!important;margin:4px 0 6px!important;overflow:visible!important}
+html.bc-cel [data-bc-tela] [data-bc-papel="numero"][data-bc-quebra]{white-space:normal!important;text-wrap:balance}
+html.bc-cel [data-bc-tela] [data-bc-papel="fonte"]{font-size:12px!important;line-height:1.4!important;letter-spacing:0!important;margin:18px 0 0!important;color:var(--bc-suave)!important;opacity:1!important;text-transform:none!important;font-weight:400!important}
+html.bc-cel [data-bc-tela] [data-bc-papel] *{font-size:inherit;line-height:inherit!important;margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important}
+html.bc-cel [data-bc-tela] [data-bc-papel] [data-bc-papel]{font-size:inherit!important}
+html.bc-cel [data-bc-tela] [data-bc-acao]{min-height:44px!important;display:inline-flex!important;align-items:center!important;justify-content:center;padding:10px 16px!important;margin:6px 0!important;width:auto!important}
+html.bc-cel [data-bc-tela] li[data-bc-papel]{margin-bottom:8px!important}
+html.bc-cel [data-bc-tela] ul,html.bc-cel [data-bc-tela] ol{padding-left:20px!important;margin:0 0 12px!important}
+html.bc-cel [data-bc-tela] [data-bc-c="lista-limpa"]{padding-left:0!important}
+/* créditos de foto que eram legenda: vão para o pé da tela, pequenos */
+html.bc-cel [data-bc-tela] .bc-fonte{display:block!important;font:400 12px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif!important;color:var(--bc-suave)!important;margin:20px 0 0!important;letter-spacing:0!important;text-transform:none!important}
+/* capa */
+html.bc-cel [data-bc-tela="1"]{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding-bottom:56px!important}
+html.bc-cel [data-bc-tela="1"][data-bc-temcapa]{min-height:100svh!important}
+html.bc-cel [data-bc-tela="1"][data-bc-temcapa]{justify-content:flex-start!important}
+html.bc-cel [data-bc-tela="1"]>*{flex:0 0 auto!important}
+html.bc-cel [data-bc-tela="1"] .bc-marcas{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;margin:-60px calc(-1 * max(var(--bc-mx),calc((100vw - 660px)/2))) 22px!important;padding:16px max(var(--bc-mx),calc((100vw - 660px)/2))!important;width:auto!important;max-width:none!important}
+html.bc-cel [data-bc-tela="1"] .bc-marcas img,html.bc-cel [data-bc-tela="1"] .bc-marcas svg{height:28px!important;width:auto!important;max-width:44%!important;object-fit:contain!important;display:block!important}
+html.bc-cel [data-bc-tela="1"][data-bc-temcapa] .bc-marcas{margin-bottom:0!important}
+html.bc-cel [data-bc-tela="1"]:not([data-bc-temcapa]) .bc-marcas+*{margin-top:28px!important}
+/* navegação na margem direita: nunca encosta no texto */
+#bc-nav{display:none}
+html.bc-cel #bc-nav{display:flex;position:fixed;right:7px;top:50%;transform:translateY(-50%);flex-direction:column;align-items:center;gap:6px;z-index:2147483000;pointer-events:none;opacity:0;transition:opacity .35s ease}
+html.bc-cel #bc-nav.bc-rolando{opacity:1}
+html.bc-cel #bc-nav i{display:block;width:5px;height:5px;border-radius:3px;background:rgba(17,17,16,.22);transition:height .25s ease,background .25s ease}
+html.bc-cel #bc-nav i.bc-agora{height:16px;background:var(--bc-acento)}
+html.bc-cel #bc-nav.bc-trilho{width:3px;height:34vh;border-radius:2px;background:rgba(17,17,16,.14);gap:0;justify-content:flex-start}
+html.bc-cel #bc-nav.bc-trilho b{display:block;width:3px;border-radius:2px;background:var(--bc-acento);height:0}
+@media (prefers-reduced-motion:reduce){html.bc-cel #bc-nav i{transition:none}}
+/* componente que o deck pede para manter como está no celular (data-bc-manter): só não pode passar da largura */
+html.bc-cel [data-bc-tela] [data-bc-manter]{max-width:100%!important;overflow-x:auto}
+</style>
+<script data-base-deck="1.0.0">
+/* Base de deck da agência 75 LAB (lado do navegador). Injetada pelo motor em todo deck e one-pager (deck-base.ts).
+   No computador não faz nada. No celular (largura abaixo de 900 px, ou quando o próprio deck entrou no modo celular dele)
+   transforma cada tela numa seção empilhada e desenhada para o telefone: fundo claro, tipografia por papel, números que
+   cabem, imagens na largura certa, legenda vira crédito no pé, navegação discreta na margem direita. ?bc=0 desliga. */
+(function () {
+  'use strict';
+  var D = document, H = D.documentElement, W = window;
+  if (W.__bcBase) return; W.__bcBase = 1;
+  var q = {}; try { q = Object.fromEntries(new URLSearchParams(location.search)); } catch (e) {}
+  if (q.bc === '0') return;
+  if (D.querySelector('meta[name="perfil-conferencia"][content="loja-simulada"]')) return;
+  var FORCAR = q.bc === '1';
+  var ATIVAS = ['on', 'active', 'ativa', 'ativo', 'act', 'atual', 'current', 'is-active', 'show', 'visivel', 'in', 'cur', 'atv'];
+  var CREDITO = /^(foto|fotos|imagem|imagens|ilustra[cç][aã]o|ilustrativ|cr[eé]dito|reprodu[cç][aã]o|divulga[cç][aã]o|simula[cç][aã]o|render|mockup|montagem|composi[cç][aã]o|©|\(c\))|foto real|imagem ilustrativa|ilustra[cç][aã]o institucional|meramente ilustrativ|composi[cç][aã]o ilustrativa|\bilustrativ[ao]s?\b|\(simula[cç][aã]o\)/i;
+  var LOGO = /logo|wordmark|brandmark/i;
+  var FONTE = /^\s*(fonte|fontes|source|sources|dados|refer[eê]ncias?)\s*[:·.]/i;
+  function arr(x) { return Array.prototype.slice.call(x || []); }
+  function cs(el, ps) { return W.getComputedStyle(el, ps || null); }
+  function direto(el) { var t = ''; for (var i = 0; i < el.childNodes.length; i++) { var c = el.childNodes[i]; if (c.nodeType === 3) t += c.textContent; } return t.replace(/\s+/g, ' ').trim(); }
+  function texto(el) { return (el.textContent || '').replace(/\s+/g, ' ').trim(); }
+  function rgb(c) { var m = String(c || '').match(/rgba?\(([^)]+)\)/); if (!m) return null; var v = m[1].split(/[ ,/]+/).filter(Boolean).map(parseFloat); return { r: v[0], g: v[1], b: v[2], a: v.length > 3 ? v[3] : 1 }; }
+  function lum(c) { function f(x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); } return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b); }
+  function razao(a, b) { var l1 = lum(a), l2 = lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); }
+  function imp(el, p, v) { el.style.setProperty(p, v, 'important'); }
+  var PAPEL = { r: 242, g: 241, b: 233, a: 1 }, PAPEL2 = { r: 250, g: 249, b: 244, a: 1 }, BRANCO = { r: 255, g: 255, b: 255, a: 1 };
+
+  function deckEmModoCelular() { return /(^|\s)(mob|mobile|celular|is-mobile)(\s|$)/.test(H.className + ' ' + (D.body ? D.body.className : '')); }
+  // largura do aparelho: conteúdo largo demais aumenta o innerWidth no celular, então vale o menor entre janela e tela
+  function largura() { return Math.min(W.innerWidth, (W.screen && W.screen.width) || W.innerWidth); }
+  function querCelular() { if (FORCAR) return true; if (q.bc === 'desk') return false; return largura() < 900 || deckEmModoCelular(); }
+
+  // ---------- telas ----------
+  function acharTelas() {
+    var c = arr(D.querySelectorAll('.slide, section.tela, [data-slide], section.s, .s[data-ch], .s[data-t]'));
+    c = c.filter(function (el) { return !c.some(function (o) { return o !== el && o.contains(el); }); });
+    if (c.length >= 2) return c;
+    // palco de uma tela só (one-pager 1600x900)
+    var st = D.querySelector('#stage, .stage, #palco, .palco, [data-palco], #deck, .deck');
+    if (st) {
+      var filhos = arr(st.children).filter(function (x) { return !/^(script|style|template)$/i.test(x.tagName); });
+      if (filhos.length === 1 && filhos[0].querySelector('h1,h2,h3,p')) return [filhos[0]];
+      return [st];
+    }
+    // página com largura fixa de palco no body (1600, 1440, 1280...)
+    var b = D.body; if (!b) return [];
+    var fixo = arr(b.children).filter(function (x) { if (/^(script|style|template|noscript)$/i.test(x.tagName)) return false; var w = parseFloat(cs(x).width); return w >= 1100 && x.querySelector('h1,h2,h3,p'); });
+    if (fixo.length) return fixo;
+    return [];
+  }
+
+  function classeAtiva(telas) {
+    var vis = telas.filter(function (t) { var s = cs(t); return s.visibility !== 'hidden' && s.display !== 'none' && parseFloat(s.opacity) > 0.5; });
+    for (var i = 0; i < vis.length; i++) {
+      var cand = arr(vis[i].classList).filter(function (k) { return telas.filter(function (o) { return o.classList.contains(k); }).length < telas.length; });
+      for (var j = 0; j < ATIVAS.length; j++) if (cand.indexOf(ATIVAS[j]) >= 0) return ATIVAS[j];
+      if (cand.length === 1 && cand[0].length <= 8) return cand[0];
+    }
+    return 'on';
+  }
+
+  // ---------- fase 1: lê o deck como ele foi desenhado ----------
+  function opacidadeEfetiva(el, ate) { var o = 1; for (var e = el; e && e !== ate && e !== D.body; e = e.parentElement) o *= parseFloat(cs(e).opacity || '1'); return o; }
+  function midiaDentro(el) { return /^(IMG|VIDEO|PICTURE|IFRAME|MODEL-VIEWER)$/.test(el.tagName) || !!el.querySelector('img,video,picture,iframe,model-viewer'); }
+
+  function analisar(telas, ativa) {
+    var fundos = [];
+    telas.forEach(function (t, i) {
+      var rt = t.getBoundingClientRect(), areaT = Math.max(1, rt.width * rt.height);
+      var st = cs(t);
+      t.__bcFundoOriginal = st.backgroundColor;
+      if (/url\(/.test(st.backgroundImage)) fundos.push({ tela: t, el: t, bg: st.backgroundImage, pos: st.backgroundPosition });
+      arr(t.querySelectorAll('*')).forEach(function (el) {
+        var tag = el.tagName;
+        if (el.closest('svg') && tag.toLowerCase() !== 'svg') return;
+        if (el.closest('[data-bc-manter]')) return;
+        if (/^(SCRIPT|STYLE|TEMPLATE|NOSCRIPT|BR|WBR)$/.test(tag)) return;
+        if (el.closest('.roteiro,[data-roteiro],aside[hidden]')) return;
+        var s = cs(el);
+        if (s.display === 'none') return;
+        var abs = s.position === 'absolute' || s.position === 'fixed';
+        var tx = texto(el);
+        var midia = midiaDentro(el);
+        var bgUrl = /url\(/.test(s.backgroundImage);
+        var r = el.getBoundingClientRect(), area = r.width * r.height;
+        if (tag === 'CANVAS' && (abs || area / areaT > 0.4)) { el.setAttribute('data-bc-deco', ''); return; }
+        var stl = el.getAttribute('style') || '';
+        var pb = cs(el, '::before'), pa = cs(el, '::after');
+        if ((pb.content !== 'none' && /absolute|fixed/.test(pb.position)) || (pa.content !== 'none' && /absolute|fixed/.test(pa.position))) el.setAttribute('data-bc-ancora', '');
+        if (abs && el.parentElement && /(left|right)\s*:\s*[\d.]+%/.test(stl) && /(top|bottom)\s*:\s*[\d.]+%/.test(stl) && arr(el.parentElement.children).some(function (x) { return x.tagName === 'IMG' || x.tagName === 'PICTURE'; }) && r.width < 160) {
+          el.setAttribute('data-bc-ponto', ''); el.parentElement.setAttribute('data-bc-mapa', '');
+          el.__bcPos = { left: el.style.left, top: el.style.top, right: el.style.right, bottom: el.style.bottom };
+          return;
+        }
+        if (el.closest('[data-bc-ponto]')) return;
+        // barra de gráfico (preenchimento absoluto dentro de um trilho baixo): fica no trilho, na mesma proporção
+        var pr = el.parentElement ? el.parentElement.getBoundingClientRect() : null, cbg = rgb(s.backgroundColor);
+        if (abs && !tx && !midia && pr && pr.height > 0 && pr.height <= 56 && r.height >= pr.height * 0.4 && ((cbg && cbg.a > 0.3) || /gradient/.test(s.backgroundImage)) && el.parentElement !== t) {
+          el.setAttribute('data-bc-barra', ''); el.parentElement.setAttribute('data-bc-trilho', '');
+          el.__bcBarra = { left: ((r.left - pr.left) / pr.width * 100).toFixed(2) + '%', top: ((r.top - pr.top) / pr.height * 100).toFixed(2) + '%', width: (r.width / pr.width * 100).toFixed(2) + '%', height: (r.height / pr.height * 100).toFixed(2) + '%' };
+          return;
+        }
+        // galeria que troca de foto (uma visível, as outras com opacidade 0 no mesmo lugar): fica só a visível
+        if (abs && parseFloat(s.opacity) < 0.05 && el.parentElement && arr(el.parentElement.children).some(function (x) { if (x === el || x.tagName !== el.tagName) return false; var sx = cs(x); return (sx.position === 'absolute' || sx.position === 'relative') && parseFloat(sx.opacity) > 0.5; })) { el.setAttribute('data-bc-oculto', ''); return; }
+        if (abs && !tx && !midia) {
+          if (bgUrl && area / areaT > 0.1) { el.setAttribute('data-bc-fundo', area / areaT > 0.45 ? 'capa' : 'meio'); fundos.push({ tela: t, el: el }); }
+          else el.setAttribute('data-bc-deco', '');
+          return;
+        }
+        if (abs && tx) {
+          var op = opacidadeEfetiva(el, t), fs = parseFloat(s.fontSize);
+          if ((op > 0.01 && op < 0.3) || fs >= 180 || el.getAttribute('aria-hidden') === 'true') { el.setAttribute('data-bc-deco', ''); return; }
+        }
+        if (!abs && !tx && !midia && bgUrl && area / areaT > 0.25 && !el.children.length) { el.setAttribute('data-bc-fundo', 'meio'); fundos.push({ tela: t, el: el }); }
+        if (abs && midia && !tx && area / areaT > 0.4) el.setAttribute('data-bc-capa-midia', '');
+        if (el.getAttribute('aria-hidden') === 'true' && !tx && !midia && (tag !== 'svg' || (r.width > 120 && !el.querySelector('text')))) el.setAttribute('data-bc-deco', '');
+      });
+    });
+    return fundos;
+  }
+
+  // cabeçalho e navegação do deck que ficam fora das telas (fixos): saem; os logos do cabeçalho vão para a capa
+  function cromo(telas) {
+    var logos = [];
+    var tudo = arr(D.body.querySelectorAll('*'));
+    tudo.forEach(function (el) {
+      if (el.closest('[data-bc-tela]') || el.id === 'bc-nav' || el.closest('#bc-nav')) return;
+      if (telas.some(function (t) { return el.contains(t); })) return;
+      if (/^(SCRIPT|STYLE|TEMPLATE|NOSCRIPT|LINK|META)$/.test(el.tagName)) return;
+      var s = cs(el);
+      var ancestralMarcado = el.parentElement && el.parentElement.closest('[data-bc-cromo]');
+      if (ancestralMarcado) return;
+      if (s.position === 'fixed' || s.position === 'sticky' || (s.position === 'absolute' && el.parentElement && el.parentElement.hasAttribute('data-bc-palco')) || (s.position === 'absolute' && el.parentElement === D.body)) {
+        arr(el.querySelectorAll('img, svg')).forEach(function (im) {
+          if (im.parentElement.closest('svg') || im.closest('button')) return;
+          var rr = im.getBoundingClientRect(); var sv = cs(im);
+          var visivel = rr.width > 24 && rr.height > 10 && sv.display !== 'none' && sv.visibility !== 'hidden' && parseFloat(sv.opacity) > 0.2;
+          var arq = im.tagName === 'IMG' ? decodeURIComponent((im.getAttribute('src') || '').split('?')[0]).toLowerCase() : '';
+          if (visivel || (arq && LOGO.test(arq))) logos.push({ el: im, visivel: visivel, arq: arq });
+        });
+        el.setAttribute('data-bc-cromo', '');
+      }
+    });
+    var saida = logos.filter(function (x) { return !ehCasa(x.el); }).map(function (x) { return x.el; });
+    return saida;
+  }
+
+  // Logos da capa no celular (Caique/coordenação, 13/10/2026: logo da PANCO, da faixa de clientes da casa, apareceu no topo
+  // da proposta da Catupiry). Regra: só o CABEÇALHO do deck (barra fixa ou cabeçalho repetido no topo das telas, antes do
+  // título), só a marca do trabalho e a 75 LAB, nunca marcas-casa nem logo de faixa de clientes. Sem certeza: sem faixa.
+  var MARCA_JOB = (function () { var sc = D.currentScript || D.querySelector('script[data-base-deck]'); return sc ? (sc.getAttribute('data-marca') || '') : ''; })();
+  function semAcento(t) { return String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+  var TOKENS_MARCA = semAcento(MARCA_JOB).replace(/\b(grupo|marca|da|de|do|das|dos|e|the|ltda|sa|s\/a|industria|alimentos|brasil)\b/g, ' ').split(/[^a-z0-9]+/).filter(function (x) { return x.length >= 3; });
+  function caminhoDe(x) { return x && x.tagName === 'IMG' ? semAcento(decodeURIComponent((x.getAttribute('src') || '').split('?')[0])) : ''; }
+  // nome do arquivo + alt (sem a pasta: a pasta do trabalho tem o nome do cliente e casaria com qualquer foto)
+  function nomeLogo(x) { return x && x.tagName === 'IMG' ? semAcento(caminhoDe(x).split('/').pop() + ' ' + (x.getAttribute('alt') || '') + ' ' + (x.getAttribute('class') || '')) : semAcento(x && x.getAttribute ? (x.getAttribute('aria-label') || '') : ''); }
+  function eh75lab(x) { return /75\s?lab|setenta e cinco/.test(nomeLogo(x)) || /marca-75lab/.test(caminhoDe(x)); }
+  function ehCasa(x) { return /marcas-casa|clientes-casa|marcas_atendidas|\/cases\//.test(caminhoDe(x)); }
+  function ehLogo(x) { return LOGO.test(nomeLogo(x)) || eh75lab(x); }
+  function ehDaMarca(x) { var n = nomeLogo(x); return TOKENS_MARCA.length ? TOKENS_MARCA.some(function (t) { return n.indexOf(t) >= 0; }) : false; }
+  function cabecalhosDasTelas(telas) {
+    var porClasse = {}, cands = [];
+    telas.forEach(function (t, i) {
+      var titulo = t.querySelector('h1, h2');
+      arr(t.querySelectorAll('*')).forEach(function (el) {
+        // só logos (aceita um separador como "×" entre eles)
+        if (el.closest('svg') || texto(el).replace(/[×x+|·•\/\s-]/gi, '').length) return;
+        // cabeçalho é filho da tela (ou do primeiro invólucro) e vem antes do título
+        if (!(el.parentElement === t || (el.parentElement && el.parentElement.parentElement === t))) return;
+        var ims = arr(el.querySelectorAll('img')).concat(el.tagName === 'IMG' ? [el] : []);
+        var parDeMarcas = ims.length >= 2 && ims.some(eh75lab);
+        if (titulo && !parDeMarcas && !(el.compareDocumentPosition(titulo) & Node.DOCUMENT_POSITION_FOLLOWING)) return;
+        if (!ims.length || ims.length > 3) return;
+        if (ims.some(ehCasa)) return;
+        if (!ims.every(ehLogo)) return;
+        // faixa de marcas: irmãos com logos de outras empresas = não é cabeçalho
+        var irmaosComLogo = el.parentElement ? arr(el.parentElement.children).filter(function (x) { return x !== el && !texto(x).replace(/[×x+|·•\/\s-]/gi, '').length && x.querySelector && x.querySelector('img'); }).length : 0;
+        if (irmaosComLogo >= 2) return;
+        var chave = el.tagName + '.' + String(el.className || '').trim().split(/\s+/).sort().join('.');
+        porClasse[chave] = (porClasse[chave] || 0) + 1;
+        cands.push({ el: el, tela: i, chave: chave, ims: ims });
+      });
+    });
+    var pool = [];
+    cands.forEach(function (c) {
+      // par de logos (marca + 75 LAB) antes do título é cabeçalho em qualquer tela, mesmo com classe diferente
+      if (porClasse[c.chave] < 2 && c.tela !== 0 && !(c.ims.length >= 2 && c.ims.some(eh75lab))) return;
+      c.ims.forEach(function (x) { pool.push(x); });
+      c.el.setAttribute('data-bc-oculto', '');
+    });
+    return pool;
+  }
+  // escolhe no máximo 2 logos: a marca do trabalho e a 75 LAB, na versão para fundo claro quando existir
+  function logosDaCapa(pool) {
+    var CLARO = /branc|white|negativ|lime|light|inverse|claro/;
+    var vistos = {}, unicos = [];
+    pool.forEach(function (x) { if (ehCasa(x) || !ehLogo(x)) return; var k = nomeLogo(x).split(' ')[0] || x.outerHTML.slice(0, 120); if (!vistos[k]) { vistos[k] = 1; unicos.push(x); } });
+    function melhor(lista) { var escuro = lista.filter(function (x) { return !CLARO.test(nomeLogo(x)); }); return (escuro.length ? escuro : lista)[0] || null; }
+    var lab = melhor(unicos.filter(eh75lab));
+    var cliLista = unicos.filter(function (x) { return !eh75lab(x); });
+    if (TOKENS_MARCA.length) cliLista = cliLista.filter(ehDaMarca);
+    else if (cliLista.length > 1) cliLista = [];
+    var cli = melhor(cliLista);
+    var saida = [cli, lab].filter(Boolean);
+    saida.__claro = saida.length && saida.every(function (x) { return !CLARO.test(nomeLogo(x)); });
+    return saida;
+  }
+
+  // ---------- fase 2: desenha para o celular ----------
+  function papelDoTexto(el, base, ehCapa) {
+    var s = cs(el), tag = el.tagName, tx = texto(el), fs = parseFloat(s.fontSize), r = fs / base;
+    var palavras = tx.split(' ').length;
+    var cls = String(el.className && el.className.baseVal !== undefined ? el.className.baseVal : el.className || '');
+    if (/^\d{1,2}\s*\/\s*\d{1,2}$/.test(tx)) return 'contador';
+    if (tx.length <= 70 && /(setas do teclado|use as setas|deslize para|arraste para|toque para avan|clique para avan|swipe|tecla [a-z]\b|aperte f\b|tela cheia com)/i.test(tx)) return 'contador';
+    if (FONTE.test(tx) || /(^|[\s_-])(fonte|fontes|source|rodape-fonte)([\s_-]|$)/i.test(cls)) return 'fonte';
+    var digitos = /\d/.test(tx) && (tx.replace(/\D/g, '').length >= 2 || /[%+$×x]/.test(tx) || r >= 3.2), curto = tx.length <= 16;
+    if ((r >= 1.9 || /(^|[\s_-])(num|numero|kpi|stat|big|cnt|count|valor)([\s_-]|$)/i.test(cls)) && digitos && curto && !/^H[1-3]$/.test(tag)) return 'numero';
+    var pesado = parseInt(s.fontWeight, 10) >= 600 || /shoulders|anton|oswald|bebas|condensed|display|impact|archivo black|league gothic/i.test(s.fontFamily);
+    if (!/^H[1-3]$/.test(tag) && tx.length <= 11 && pesado && digitos && /^[\s+\-~≈R$€%x×.,:\/\d]+(\s?(mi|bi|mil|k|%|x|anos?|pp|p\.p\.))?\+?$/i.test(tx) && /\d/.test(tx) && !/^\d{1,2}\s*\/\s*\d{1,2}$/.test(tx)) return 'numero';
+    if (tag === 'H1') return ehCapa ? 'capa' : 'titulo';
+    if (tag === 'H2') return ehCapa && r >= 2.4 ? 'capa' : 'titulo';
+    if (tag === 'H3' || /titulo|title|headline/i.test(cls)) return r >= 2.4 ? 'titulo' : 'titulo3';
+    if (r >= 2.4) return ehCapa ? 'capa' : 'titulo';
+    if (tag === 'H4' || tag === 'H5' || r >= 1.32) return 'subtitulo';
+    var mono = /mono|courier|code/i.test(s.fontFamily);
+
+    if (mono && palavras > 12 && r <= 1.0 && tag !== 'P' || mono && palavras > 18 && r < 0.95) return 'fonte';
+    if (/(^|[\s_-])(src|nota|notas|obs|disclaimer|rodape)([\s_-]|$)/i.test(cls) && r < 0.95 && palavras > 3) return 'fonte';
+    if ((s.textTransform === 'uppercase' || mono) && palavras <= 12 && tx.length <= 90) return 'rotulo';
+    if (r < 0.86 && palavras <= 8) return 'apoio';
+    return 'corpo';
+  }
+
+  function corEfetivaDeFundo(el, tela) {
+    for (var e = el; e && e !== tela; e = e.parentElement) {
+      if (e.hasAttribute('data-bc-camada')) continue;
+      var s = cs(e);
+      if (/url\(/.test(s.backgroundImage) && !e.hasAttribute('data-bc-fundo')) return null;
+      var c = rgb(s.backgroundColor);
+      if (c && c.a > 0.55) return c;
+    }
+    return tela.hasAttribute('data-bc-par') ? PAPEL2 : PAPEL;
+  }
+
+  function escurecer(c, fundo, alvo) {
+    var r = c.r, g = c.g, b = c.b;
+    for (var i = 0; i < 24 && razao({ r: r, g: g, b: b }, fundo) < alvo; i++) { r *= 0.86; g *= 0.86; b *= 0.86; }
+    return 'rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
+  }
+
+  function classificarImagem(im) {
+    if (im.hasAttribute('data-bc-img') && !im.hasAttribute('data-bc-provisoria')) return;
+    im.removeAttribute('data-bc-provisoria');
+    var nw = im.naturalWidth, nh = im.naturalHeight;
+    if (!nw || !nh) { im.setAttribute('data-bc-img', LOGO.test((im.getAttribute('alt') || '') + ' ' + (im.getAttribute('src') || '').split('?')[0]) ? 'logo' : 'foto'); im.setAttribute('data-bc-provisoria', ''); return; }
+    var arq = decodeURIComponent((im.getAttribute('src') || '').split('?')[0]).split('/').pop().toLowerCase();
+    var dica = ((im.getAttribute('alt') || '') + ' ' + arq + ' ' + (im.className || '') + ' ' + (im.parentElement ? im.parentElement.className : '')).toLowerCase();
+    var asp = nw / nh;
+    var tipo;
+    var ehLogo = /logo|wordmark|brandmark/.test(arq + ' ' + (im.className || '')) || /^(logo|logotipo|marca)\b/.test((im.getAttribute('alt') || '').toLowerCase()) || /\blogo(tipo)?\b/.test((im.getAttribute('alt') || '').toLowerCase());
+    if (ehLogo || (asp >= 2.4 && nh <= 360 && !/foto|kv|hero|banner|capa|gondola|loja|render/.test(dica))) tipo = 'logo';
+    else if (Math.max(nw, nh) <= 180 || /icone|icon|ico[-_]/.test(dica)) tipo = 'icone';
+    else tipo = im.hasAttribute('data-bc-capa-midia') || (im.closest('[data-bc-capa-midia]') && im.closest('[data-bc-tela="1"]')) ? 'capa' : 'foto';
+    im.setAttribute('data-bc-img', tipo);
+    if (tipo === 'foto' && asp < 0.8) im.setAttribute('data-bc-alta', '');
+  }
+
+  function ajustarNumero(el) {
+    el.removeAttribute('data-bc-quebra');
+    var pai = el.parentElement; var disp = Math.max(120, (pai ? pai.clientWidth - parseFloat(cs(pai).paddingLeft) - parseFloat(cs(pai).paddingRight) : W.innerWidth - 44));
+    disp = Math.min(disp, W.innerWidth - 44);
+    var max = Math.min(68, Math.round(W.innerWidth * 0.165)), min = 30;
+    imp(el, 'font-size', max + 'px');
+    imp(el, 'display', 'block');
+    var w = el.scrollWidth;
+    if (w > disp) {
+      var novo = Math.max(min, Math.floor(max * disp / w) - 1);
+      imp(el, 'font-size', novo + 'px');
+      if (el.scrollWidth > disp + 1) el.setAttribute('data-bc-quebra', '');
+    }
+  }
+
+  function legendas(tela) {
+    var achadas = [];
+    arr(tela.querySelectorAll('figcaption, [class*=legenda], [class*=caption], [class*=credito], [class*=credit]')).forEach(function (c) { if (texto(c)) achadas.push(c); });
+    // texto curto de crédito colado a uma imagem (embaixo ou por cima dela)
+    arr(tela.querySelectorAll('img, [data-bc-fundo], picture')).forEach(function (im) {
+      var cont = im.parentElement; if (!cont) return;
+      var cands = arr(cont.children).concat(cont.parentElement ? arr(cont.parentElement.children) : []);
+      cands.forEach(function (c) {
+        if (c === im || c.contains(im) || achadas.indexOf(c) >= 0 || c.hasAttribute('data-bc-proprio')) return;
+        var t = texto(c);
+        if (!t || t.length > 140 || c.querySelector('img, h1, h2, h3, h4') || /^H[1-4]$/.test(c.tagName)) return;
+        var logoPerto = im.tagName === 'IMG' && LOGO.test((im.getAttribute('alt') || '') + (im.getAttribute('src') || '').split('?')[0]);
+        // texto curto logo depois da foto (irmão seguinte) e menor que o corpo também é legenda
+        var colado = (c === im.nextElementSibling || c === (im.parentElement && im.parentElement.nextElementSibling)) && parseFloat(cs(c).fontSize) <= 15 && t.length >= 6 && t.length <= 90 && /[a-zà-ú]{3}/i.test(t) && !FONTE.test(t);
+        var depois = c === im.nextElementSibling || c === (im.parentElement && im.parentElement.nextElementSibling);
+        var creditoColado = depois && t.length <= 140 && /ilustra|simula|\bfoto|imagem|render|montagem|mockup/i.test(t);
+        if ((CREDITO.test(t) || colado || creditoColado) && !logoPerto) achadas.push(c);
+      });
+    });
+    // legenda e crédito de imagem SOMEM (Caique, 13/10/2026): só a fonte de DADO fica, pequena, no pé da tela
+    achadas.forEach(function (c) { c.setAttribute('data-bc-oculto', ''); });
+  }
+
+  // tira de linhas de fonte e de rótulos os trechos que são crédito de imagem ("Fotos: ...", "imagem ilustrativa")
+  var TRECHO_CREDITO = /^(fotos?|imagens?|ilustra[cç][aã]o|ilustra[cç][oõ]es|ilustrativ\w*|cr[eé]ditos?|reprodu[cç][aã]o|divulga[cç][aã]o|render|mockup|montagem|composi[cç][aã]o ilustrativa|simula[cç][aã]o)\b|imagem ilustrativa|imagens ilustrativas|foto real|fotos reais|ilustra[cç][aã]o institucional|meramente ilustrativ|imagem de fundo|\(simula[cç][aã]o\)/i;
+  function semCreditoDeImagem(tela) {
+    arr(tela.querySelectorAll('[data-bc-papel="fonte"], [data-bc-papel="rotulo"], [data-bc-papel="apoio"], [data-bc-papel="corpo"]')).forEach(function (el) {
+      var papel = el.getAttribute('data-bc-papel');
+      arr(el.childNodes).forEach(function (n) {
+        if (n.nodeType !== 3 || !n.textContent.trim()) return;
+        var partes = n.textContent.split(/(\s*[·|]\s*|(?<=[.;])\s+)/);
+        var saida = [], mudou = false;
+        for (var k = 0; k < partes.length; k += 2) {
+          var seg = partes[k], sep = partes[k + 1] || '';
+          var forte = /^(imagens? ilustrativas?|foto real|fotos reais|ilustra[cç][aã]o institucional|simula[cç][aã]o|imagem de fundo ilustrativa)\.?$/i.test(seg.trim());
+          if (seg.trim() && TRECHO_CREDITO.test(seg.trim()) && (papel === 'fonte' || (papel === 'corpo' ? forte : /imagem ilustrativa|foto real|ilustra[cç][aã]o|simula[cç][aã]o|^fotos?\s*:|^imagens?\s*:|cr[eé]dito/i.test(seg.trim())))) { mudou = true; continue; }
+          saida.push(seg + sep);
+        }
+        if (mudou) n.textContent = saida.join('').replace(/[\s·|,;]+$/, '').replace(/^[\s·|,;]+/, '');
+      });
+      var tx = texto(el).replace(/^(fontes?|sources?)\s*[:·.]\s*$/i, '');
+      if (!tx || !/[a-z0-9]{2}/i.test(tx)) el.setAttribute('data-bc-oculto', '');
+    });
+  }
+
+  function tabelas(tela) {
+    arr(tela.querySelectorAll('table')).forEach(function (tb) {
+      var linhas = arr(tb.rows); if (!linhas.length) return;
+      var cab = arr((tb.tHead && tb.tHead.rows[0] ? tb.tHead.rows[0] : linhas[0]).cells).map(texto);
+      if (cab.length <= 2) return;
+      var temCab = !!(tb.tHead && tb.tHead.rows[0]) || arr(linhas[0].cells).every(function (c) { return c.tagName === 'TH'; });
+      var box = D.createElement('div'); box.setAttribute('data-bc-proprio', ''); box.setAttribute('data-bc-grade', '');
+      linhas.slice(temCab ? 1 : 0).forEach(function (tr) {
+        if (tr.parentElement && tr.parentElement.tagName === 'THEAD') return;
+        var card = D.createElement('div'); card.setAttribute('data-bc-cartao', 'claro'); card.setAttribute('data-bc-c', '');
+        arr(tr.cells).forEach(function (td, i) {
+          var l = D.createElement('div'); l.setAttribute('data-bc-c', '');
+          var rot = cab[i] && temCab ? cab[i] : '';
+          var tt = (td.innerText || td.textContent || '').replace(/\s+/g, ' ').trim();
+          if (i === 0) { l.setAttribute('data-bc-papel', 'subtitulo'); l.textContent = tt; }
+          else { l.setAttribute('data-bc-papel', 'apoio'); l.textContent = (rot ? rot + ': ' : '') + tt; }
+          card.appendChild(l);
+        });
+        box.appendChild(card);
+      });
+      tb.setAttribute('data-bc-oculto', '');
+      tb.parentElement.insertBefore(box, tb.nextSibling);
+    });
+  }
+
+  function aplicar(telas, ativa, fundos, logos) {
+    H.classList.add('bc-cel');
+    var corpoTamanhos = [];
+    telas.forEach(function (t, i) {
+      if (i % 2 === 1) t.setAttribute('data-bc-par', '');
+      if (ativa) t.classList.add(ativa);
+      arr(t.querySelectorAll('p, li')).forEach(function (p) { var tx = texto(p); if (tx.length > 40) corpoTamanhos.push(parseFloat(cs(p).fontSize)); });
+    });
+    // tamanho de corpo do deck (mediana): referência para saber o que é título, número, apoio
+    corpoTamanhos.sort(function (a, b) { return a - b; });
+    var base = corpoTamanhos.length ? corpoTamanhos[Math.floor(corpoTamanhos.length / 2)] : 18;
+    if (!(base > 6)) base = 18;
+
+    telas.forEach(function (t, i) {
+      var ehCapa = i === 0;
+      // foto que era fundo da tela vira bloco no topo
+      fundos.filter(function (f) { return f.tela === t && f.el === t; }).forEach(function (f) {
+        var d = D.createElement('div'); d.setAttribute('data-bc-fundo', 'capa'); d.setAttribute('data-bc-proprio', '');
+        d.style.backgroundImage = f.bg; t.insertBefore(d, t.firstChild);
+      });
+      var els = arr(t.querySelectorAll('*'));
+      // contêineres, grades e linhas
+      els.forEach(function (el) {
+        if (el.closest('svg') && el.tagName.toLowerCase() !== 'svg') return;
+        if (el.hasAttribute('data-bc-deco') || el.closest('[data-bc-deco]') || el.closest('[data-bc-ponto]') || el.closest('[data-bc-manter]')) return;
+        var s = cs(el), tag = el.tagName;
+        if (tag === 'svg' || tag === 'SVG') {
+          var rs = el.getBoundingClientRect(); var vb = el.getAttribute('viewBox');
+          var grande = rs.width > 150 || el.querySelector('text') || (vb && parseFloat(vb.split(/[ ,]+/)[2]) > 200);
+          if (!vb && el.getAttribute('width') && el.getAttribute('height') && grande) el.setAttribute('viewBox', '0 0 ' + parseFloat(el.getAttribute('width')) + ' ' + parseFloat(el.getAttribute('height')));
+          el.setAttribute('data-bc-svg', grande ? 'grafico' : 'icone');
+          return;
+        }
+        if (/^(IMG|VIDEO|CANVAS|IFRAME|PICTURE|SOURCE|MODEL-VIEWER|INPUT|SELECT|TEXTAREA|BR|HR)$/.test(tag)) return;
+        var tx = texto(el);
+        var cfx = rgb(s.backgroundColor), selo = tx.length <= 24 && !midiaDentro(el) && el.children.length <= 2 && ((cfx && cfx.a > 0.3) || (parseFloat(s.borderTopWidth) > 0 && s.borderTopStyle !== 'none' && parseFloat(s.borderLeftWidth) > 0)) && !/^H[1-4]$/.test(tag);
+        if (tx || midiaDentro(el) || el.querySelector('svg')) el.setAttribute('data-bc-c', selo || (s.display.indexOf('inline') === 0 && !el.children.length) ? 'inline' : '');
+        if (/^(UL|OL)$/.test(tag) && s.listStyleType === 'none') el.setAttribute('data-bc-c', 'lista-limpa');
+        if (s.display === 'grid' || s.display === 'inline-grid') {
+          var filhos = arr(el.children).filter(function (c) { return cs(c).display !== 'none' && !c.hasAttribute('data-bc-deco'); });
+          var soLogos = filhos.length >= 3 && filhos.every(function (c) { return !texto(c) && c.querySelector('img, svg') || c.tagName === 'IMG'; });
+          if (soLogos && !filhos.some(function (c) { var im = c.tagName === 'IMG' ? c : c.querySelector('img'); return im && LOGO.test(nomeLogo(im)); })) { el.setAttribute('data-bc-grade', 'galeria'); return; }
+          var curtos = filhos.length >= 2 && filhos.length <= 4 && filhos.every(function (c) { var tt = texto(c); return tt.length <= 18 && !c.querySelector('img'); }) && filhos.some(function (c) { return /\d/.test(texto(c)); });
+          var poucosLogos = filhos.length >= 2 && filhos.length <= 3 && filhos.every(function (c) { var im = c.tagName === 'IMG' ? c : c.querySelector('img'); return !texto(c) && im && LOGO.test((im.getAttribute('alt') || '') + ' ' + (im.getAttribute('src') || '').split('?')[0]); });
+          var chips = filhos.length >= 3 && filhos.every(function (c) { var tt = texto(c); return tt.length > 0 && tt.length <= 24 && !/\d/.test(tt) && !c.querySelector('img, p, h1, h2, h3, h4, li'); });
+          if (poucosLogos || chips) el.setAttribute('data-bc-linha', 'fica');
+          else el.setAttribute('data-bc-grade', soLogos ? 'logos' : curtos && filhos.length % 2 === 0 ? '2' : '');
+        } else if ((s.display === 'flex' || s.display === 'inline-flex') && /row/.test(s.flexDirection)) {
+          var fl = arr(el.children).filter(function (c) { return cs(c).display !== 'none' && !c.hasAttribute('data-bc-deco'); });
+          var soLog = fl.length >= 3 && fl.every(function (c) { return !texto(c) && (c.tagName === 'IMG' || c.querySelector('img, svg')); });
+          var galeria = soLog && !fl.some(function (c) { var im = c.tagName === 'IMG' ? c : c.querySelector('img'); return im && LOGO.test(nomeLogo(im)); });
+          if (galeria) { el.setAttribute('data-bc-grade', 'galeria'); return; }
+          var somaTexto = fl.reduce(function (a, c) { return a + texto(c).length; }, 0);
+          var iconeComTexto = fl.some(function (c) { return texto(c) && c.querySelector('svg, img'); });
+          var pequenos = !iconeComTexto && fl.length <= 4 && somaTexto <= 48 && fl.every(function (c) { var tt = texto(c); var img = c.tagName === 'IMG' ? c : (!tt ? c.querySelector('img') : null); return tt.length <= 28 && !c.querySelector('p, h1, h2, h3, h4, li') && !(img && !LOGO.test((img.getAttribute('alt') || '') + (img.getAttribute('src') || '').split('?')[0]) && (img.naturalWidth > 260 || !img.naturalWidth)); });
+          el.setAttribute('data-bc-linha', soLog ? 'fica' : pequenos ? 'fica' : 'coluna');
+          if (soLog) el.setAttribute('data-bc-grade', 'logos');
+        } else if (/^table/.test(s.display) && tag !== 'TABLE') { el.setAttribute('data-bc-linha', 'coluna'); }
+      });
+      tabelas(t);
+      // papéis do texto
+      var marcados = [];
+      els.forEach(function (el) {
+        if (el.closest('svg') || el.closest('[data-bc-deco]') || el.closest('[data-bc-oculto]') || el.closest('[data-bc-ponto]') || el.closest('[data-bc-manter]') || el.closest('.roteiro,[data-roteiro],aside[hidden]')) return;
+        if (/^(SCRIPT|STYLE|TEMPLATE|NOSCRIPT|OPTION|SELECT|TEXTAREA)$/.test(el.tagName)) return;
+        if (!direto(el)) return;
+        var s = cs(el);
+        if (s.display === 'none') return;
+        var dentro = marcados.some(function (m) { return m.contains(el); });
+        if (dentro && s.display.indexOf('inline') === 0) return;
+        // título montado com palavras em <span> (animação por palavra): quem recebe o papel é o bloco inteiro
+        var sobe = el;
+        while (sobe.parentElement && sobe.parentElement !== t && cs(sobe.parentElement).display.indexOf('inline') === 0 && !direto(sobe.parentElement)) sobe = sobe.parentElement;
+        var pai = sobe.parentElement;
+        var titulo = pai && /^H[1-4]$/.test(pai.tagName) && !direto(pai);
+        if (pai && pai !== t && !pai.hasAttribute('data-bc-papel') && texto(pai).length <= 220 && (titulo || (cs(sobe).display.indexOf('inline') === 0 && cs(pai).display.indexOf('inline') !== 0 && arr(pai.children).every(function (c) { return cs(c).display.indexOf('inline') === 0 || c.tagName === 'BR'; })))) {
+          el = pai; s = cs(el);
+        }
+        // linhas de um título (cada linha num bloco): o papel vai para o título inteiro
+        while (el.parentElement && el.parentElement !== t && /^H[1-4]$/.test(el.parentElement.tagName) && !direto(el.parentElement) && !el.parentElement.hasAttribute('data-bc-papel')) { el = el.parentElement; s = cs(el); }
+        if (marcados.indexOf(el) >= 0 || el.hasAttribute('data-bc-papel')) return;
+        var papel = papelDoTexto(el, base, ehCapa);
+        if (papel === 'contador') { el.setAttribute('data-bc-oculto', ''); return; }
+        el.setAttribute('data-bc-papel', papel);
+        if (papel === 'rotulo' && s.textTransform !== 'uppercase') imp(el, 'font-size', '14px');
+        marcados.push(el);
+      });
+      // ações (links e botões soltos) com área de toque de 44 px
+      arr(t.querySelectorAll('a[href], button, [role=button]')).forEach(function (a) {
+        if (a.closest('[data-bc-deco]') || a.closest('[data-bc-oculto]') || a.closest('[data-bc-ponto]')) return;
+        var p = a.parentElement && a.parentElement.closest('[data-bc-papel="corpo"], [data-bc-papel="apoio"], [data-bc-papel="fonte"]');
+        if (!p && texto(a).length <= 60) a.setAttribute('data-bc-acao', '');
+      });
+      // cartões e camadas de fundo
+      var rt = t.getBoundingClientRect(), areaT = Math.max(1, rt.width * rt.height);
+      els.forEach(function (el) {
+        if (!el.hasAttribute('data-bc-c') || el.hasAttribute('data-bc-papel') && !el.children.length) return;
+        var s = cs(el); var c = rgb(s.backgroundColor); var r = el.getBoundingClientRect();
+        var temBorda = parseFloat(s.borderTopWidth) > 0 && s.borderTopStyle !== 'none' || parseFloat(s.borderLeftWidth) > 0 && s.borderLeftStyle !== 'none';
+        var corBorda = rgb(s.borderTopColor) || rgb(s.borderLeftColor);
+        if (c && c.a > 0.55 && (r.width * r.height) / areaT > 0.62 && el.parentElement && (el.parentElement === t || el.parentElement.closest('[data-bc-tela]') === t && (r.width >= rt.width - 2))) { el.setAttribute('data-bc-camada', ''); return; }
+        if (c && c.a > 0.02 && c.a <= 0.55 || (temBorda && corBorda && lum(corBorda) > 0.6 && (!c || c.a <= 0.55))) {
+          if (texto(el).length > 6 && r.height > 40) el.setAttribute('data-bc-cartao', 'claro');
+        } else if (c && c.a > 0.55 && texto(el).length > 6 && r.height > 40) el.setAttribute('data-bc-cartao', '');
+      });
+      // espaços grandes do desenho de 1600 px viram o ritmo do celular
+      els.forEach(function (el) {
+        if (!el.hasAttribute('data-bc-c')) return;
+        if (el.hasAttribute('data-bc-papel') || el.hasAttribute('data-bc-img') || el.hasAttribute('data-bc-acao')) return;
+        var s = cs(el);
+        var mt = parseFloat(s.marginTop), mb = parseFloat(s.marginBottom);
+        if (mt > 22 || mt < 0) imp(el, 'margin-top', mt < 0 ? '0px' : '20px');
+        if (mb > 22 || mb < 0) imp(el, 'margin-bottom', mb < 0 ? '0px' : '20px');
+        if (!el.hasAttribute('data-bc-cartao')) {
+          var cf = rgb(s.backgroundColor), comFundo = cf && cf.a > 0.05 || /url\(|gradient/.test(s.backgroundImage);
+          ['left', 'right', 'top', 'bottom'].forEach(function (lado) {
+            var pv = parseFloat(s.getPropertyValue('padding-' + lado)), borda = parseFloat(s.getPropertyValue('border-' + lado + '-width')) > 0 && s.getPropertyValue('border-' + lado + '-style') !== 'none';
+            if (borda || comFundo) { if (pv > 22) imp(el, 'padding-' + lado, '16px'); }
+            else if (pv > (lado === 'left' || lado === 'right' ? 24 : 16)) imp(el, 'padding-' + lado, '0px');
+          });
+        }
+        var g = parseFloat(s.rowGap); if (g > 18) imp(el, 'row-gap', '14px');
+        var cg = parseFloat(s.columnGap); if (cg > 18) imp(el, 'column-gap', '14px');
+        if (s.whiteSpace === 'nowrap' && texto(el).length > 18) imp(el, 'white-space', 'normal');
+      });
+      arr(t.querySelectorAll('[data-bc-mapa]')).forEach(function (m) { imp(m, 'position', 'relative'); imp(m, 'width', '100%'); });
+      arr(t.querySelectorAll('[data-bc-trilho]')).forEach(function (m) { imp(m, 'position', 'relative'); });
+      arr(t.querySelectorAll('[data-bc-barra]')).forEach(function (b) { var o = b.__bcBarra || {}; imp(b, 'position', 'absolute'); imp(b, 'inset', 'auto'); ['left', 'top', 'width', 'height'].forEach(function (k) { if (o[k]) imp(b, k, o[k]); }); });
+      arr(t.querySelectorAll('[data-bc-ponto]')).forEach(function (pt) {
+        var o = pt.__bcPos || {}; imp(pt, 'position', 'absolute'); imp(pt, 'inset', 'auto');
+        ['left', 'top', 'right', 'bottom'].forEach(function (k) { if (o[k]) imp(pt, k, o[k]); });
+        imp(pt, 'min-width', '44px'); imp(pt, 'min-height', '44px'); imp(pt, 'transform', 'translate(-50%,-50%)'); imp(pt, 'z-index', '2');
+      });
+      arr(t.querySelectorAll('iframe')).forEach(function (f) {
+        if (!f.getAttribute('src')) { var u = f.getAttribute('data-src') || f.getAttribute('data-depois') || f.getAttribute('data-url') || f.getAttribute('data-antes'); if (u) f.setAttribute('src', u); }
+        f.setAttribute('loading', 'eager');
+      });
+      legendas(t);
+      semCreditoDeImagem(t);
+      // fonte de dado vai para o pé da tela
+      arr(t.querySelectorAll('[data-bc-papel="fonte"]')).forEach(function (f) {
+        var dono = f.parentElement && f.parentElement.closest('[data-bc-cartao]');
+        if (!dono && f.parentElement !== t) t.appendChild(f);
+      });
+    });
+    cores(telas);
+    // capa: logos do cabeçalho do deck
+    var capa = telas[0];
+    // a capa já mostra os logos no próprio conteúdo (antes do título): não repete numa faixa
+    var tituloCapa = capa && capa.querySelector('h1, h2');
+    var logosNaCapa = capa ? arr(capa.querySelectorAll('img')).filter(function (im) { return ehLogo(im) && !ehCasa(im) && !im.closest('[data-bc-oculto],[data-bc-deco],[data-bc-cromo]') && (!tituloCapa || (im.compareDocumentPosition(tituloCapa) & Node.DOCUMENT_POSITION_FOLLOWING)); }) : [];
+    if (logosNaCapa.length) logos = [];
+    // cabeçalho repetido: na capa ele aparece no lugar da faixa (só logos da marca e da 75 LAB)
+    if (!logosNaCapa.length && capa) arr(capa.querySelectorAll('[data-bc-oculto]')).forEach(function (h) { if (h.querySelector('img') && arr(h.querySelectorAll('img')).every(function (im) { return ehLogo(im) && !ehCasa(im) && (eh75lab(im) || ehDaMarca(im) || !TOKENS_MARCA.length); }) && !h.closest('[data-bc-deco]') && !arr(h.querySelectorAll('img')).some(function (im) { return /branc|white|negativ|lime|light|inverse|claro/.test(nomeLogo(im)); })) { h.removeAttribute('data-bc-oculto'); logos = []; } });
+    if (capa && logos.length && !capa.querySelector('.bc-marcas')) {
+      var barra = D.createElement('div'); barra.className = 'bc-marcas'; barra.setAttribute('data-bc-proprio', '');
+      var vistos = [];
+      logos.slice(0, 2).forEach(function (im) { var k = im.tagName === 'IMG' ? im.currentSrc || im.src : im.outerHTML.slice(0, 200); if (vistos.indexOf(k) >= 0) return; vistos.push(k); var c = im.cloneNode(true); arr(c.attributes).map(function (a) { return a.name; }).forEach(function (n) { if (/^(id|class|style|loading|data-bc-)/.test(n) || n.indexOf('data-bc-') === 0) c.removeAttribute(n); }); c.setAttribute('data-bc-proprio', ''); barra.appendChild(c); });
+      var fundoCapa = rgb(capa.__bcFundoOriginal);
+      var foto = capa.querySelector('[data-bc-fundo="capa"], [data-bc-img="capa"], [data-bc-capa-midia]');
+      var algumClaro = logos.some(function (x) { return /branc|white|negativ|lime|light|inverse|claro/.test(nomeLogo(x)); });
+      if (logos.__claro && !algumClaro) barra.style.background = 'transparent';
+      else if (algumClaro) barra.style.background = fundoCapa && fundoCapa.a > 0.5 && lum(fundoCapa) < 0.35 ? capa.__bcFundoOriginal : '#111110';
+      else if (fundoCapa && fundoCapa.a > 0.5 && lum(fundoCapa) < 0.35) barra.style.background = capa.__bcFundoOriginal;
+      else if (foto) barra.style.background = '#111110';
+      else barra.style.background = 'transparent';
+      capa.insertBefore(barra, capa.firstChild);
+      if (foto) imp(foto, 'margin-top', '0px');
+    }
+    if (capa && capa.querySelector('[data-bc-fundo="capa"], [data-bc-capa-midia]')) capa.setAttribute('data-bc-temcapa', '');
+  }
+
+  // cores: fundo claro e contraste garantido no texto que ficou sobre o papel (roda de novo no acabamento)
+  function cores(telas) {
+    telas.forEach(function (t) {
+      arr(t.querySelectorAll('[data-bc-papel], [data-bc-acao], .bc-fonte')).forEach(function (el) {
+        if (el.getAttribute('data-bc-papel') === 'fonte' || el.classList.contains('bc-fonte')) return;
+        var fundo = corEfetivaDeFundo(el, t); if (!fundo) return;
+        var c = rgb(cs(el).color); if (!c) return;
+        var grande = parseFloat(cs(el).fontSize) >= 24 || (parseFloat(cs(el).fontSize) >= 18.5 && parseInt(cs(el).fontWeight, 10) >= 700);
+        var alvo = grande ? 3.2 : 4.6;
+        if (razao(c, fundo) >= alvo) return;
+        var claroNoClaro = lum(fundo) > 0.5;
+        if (claroNoClaro && lum(c) > 0.55) {
+          // texto claro (era sobre fundo escuro): tinta, ou a cor escurecida quando é cor de destaque
+          var sat = Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b);
+          imp(el, 'color', sat > 60 ? escurecer(c, fundo, alvo) : '#111110');
+        } else if (claroNoClaro) imp(el, 'color', escurecer(c, fundo, alvo));
+        else if (lum(c) < 0.3) imp(el, 'color', razao({ r: 242, g: 241, b: 233, a: 1 }, fundo) >= alvo ? '#F2F1E9' : '#FFFFFF'); // texto escuro sobre cartão escuro (estado de animação que não rodou)
+        arr(el.querySelectorAll('*')).forEach(function (f) { if (f.hasAttribute('data-bc-papel')) return; var cf = rgb(cs(f).color); if (cf && razao(cf, fundo) < alvo) imp(f, 'color', lum(cf) > 0.55 && Math.max(cf.r, cf.g, cf.b) - Math.min(cf.r, cf.g, cf.b) <= 60 ? '#111110' : escurecer(cf, fundo, alvo)); });
+      });
+      // bordas claras de cartões sobre o papel
+      arr(t.querySelectorAll('[data-bc-acao]')).forEach(function (a) { var s = cs(a); var b = rgb(s.borderTopColor); if (b && parseFloat(s.borderTopWidth) > 0 && lum(b) > 0.6) imp(a, 'border-color', 'rgba(17,17,16,.35)'); });
+      // ícones svg claros
+      arr(t.querySelectorAll('svg[data-bc-svg="icone"]')).forEach(function (v) { var fundo = corEfetivaDeFundo(v, t); var c = rgb(cs(v).color); if (fundo && c && razao(c, fundo) < 2.2) imp(v, 'color', escurecer(c, fundo, 3)); });
+    });
+  }
+
+  // ---------- depois que imagens e fontes chegam ----------
+  function acabamento(telas) {
+    arr(D.querySelectorAll('[data-bc-tela] img[loading="lazy"]')).forEach(function (im) { im.loading = 'eager'; });
+    arr(D.querySelectorAll('[data-bc-tela] img')).forEach(function (im) {
+      if (im.closest('[data-bc-deco]') || im.closest('.bc-marcas')) return;
+      if (im.complete) classificarImagem(im); else im.addEventListener('load', function () { classificarImagem(im); }, { once: true });
+    });
+    // contadores que ficaram no zero (o deck anima ao abrir a tela; no celular a tela não "abre")
+    arr(D.querySelectorAll('[data-bc-tela] [data-to], [data-bc-tela] [data-count], [data-bc-tela] [data-alvo], [data-bc-tela] [data-target]')).forEach(function (el) {
+      var alvo = el.getAttribute('data-to') || el.getAttribute('data-count') || el.getAttribute('data-alvo') || el.getAttribute('data-target');
+      var v = parseFloat(String(alvo).replace(',', '.')); if (!isFinite(v)) return;
+      var atual = (el.textContent || '').match(/[\d.,]+/);
+      var num = atual ? parseFloat(atual[0].replace(/\./g, '').replace(',', '.')) : NaN;
+      if (atual && num !== 0 && Math.abs(num - v) / Math.max(1, Math.abs(v)) < 0.02) return;
+      var dec = (String(alvo).split(/[.,]/)[1] || '').length; if (el.getAttribute('data-dec')) dec = +el.getAttribute('data-dec');
+      var fmt = v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      if (atual) el.textContent = el.textContent.replace(atual[0], fmt); else el.textContent = (el.getAttribute('data-pre') || '') + fmt + (el.getAttribute('data-suf') || el.getAttribute('data-suffix') || '');
+    });
+    // texto que ficou invisível esperando a animação da tela
+    arr(D.querySelectorAll('[data-bc-tela] [data-bc-c], [data-bc-tela] [data-bc-papel], [data-bc-tela] img')).forEach(function (el) {
+      if (el.closest('[data-bc-deco]') || el.closest('[data-bc-oculto]')) return;
+      var s = cs(el);
+      if (parseFloat(s.opacity) < 0.05) imp(el, 'opacity', '1');
+      if (s.visibility === 'hidden') imp(el, 'visibility', 'visible');
+    });
+    // palavras e trechos em linha dentro de um bloco com papel seguem o tamanho do bloco
+    arr(D.querySelectorAll('[data-bc-tela] [data-bc-papel] *')).forEach(function (f) {
+      if (f.closest('svg') || f.hasAttribute('data-bc-papel')) return;
+      var dono = f.parentElement && f.parentElement.closest('[data-bc-papel]');
+      if (cs(f).display.indexOf('inline') !== 0 && !(dono && /^H[1-4]$/.test(dono.tagName))) return;
+      if (f.tagName === 'IMG' || f.tagName === 'svg') return;
+      imp(f, 'font-size', 'inherit'); imp(f, 'line-height', 'inherit');
+    });
+    arr(D.querySelectorAll('[data-bc-tela] [data-bc-papel] *')).forEach(function (f) {
+      if (f.closest('svg') || f.closest('[data-bc-papel="fonte"]') || !direto(f)) return;
+      if (parseFloat(cs(f).fontSize) < 14.5) imp(f, 'font-size', 'max(.5em, 15px)');
+    });
+    telas.forEach(function (t) {
+      var vistas = {};
+      arr(t.querySelectorAll('img')).forEach(function (im) {
+        if (im.closest('[data-bc-oculto],[data-bc-deco],.bc-marcas') || /logo|icone|icon/.test(im.getAttribute('data-bc-img') || '') || cs(im).display === 'none') return;
+        var k = (im.currentSrc || im.src || '').split('?')[0]; if (!k) return;
+        if (vistas[k]) im.setAttribute('data-bc-oculto', ''); else vistas[k] = 1;
+      });
+    });
+    arr(D.querySelectorAll('[data-bc-tela] [data-bc-papel="numero"]')).forEach(ajustarNumero);
+    cores(telas);
+    // título com palavra longa: diminui até caber
+    arr(D.querySelectorAll('[data-bc-tela] [data-bc-papel="capa"], [data-bc-tela] [data-bc-papel="titulo"], [data-bc-tela] [data-bc-papel="titulo3"], [data-bc-tela] [data-bc-papel="subtitulo"]')).forEach(function (el) {
+      var lim = el.clientWidth; var tam = parseFloat(cs(el).fontSize); var n = 0;
+      while (el.scrollWidth > lim + 1 && n < 10) { tam = tam * 0.93; imp(el, 'font-size', tam.toFixed(1) + 'px'); n++; }
+      if (el.scrollWidth > lim + 1) imp(el, 'overflow-wrap', 'anywhere');
+    });
+    // o que ainda vaza para o lado: quebra, vira coluna ou encolhe
+    arr(D.querySelectorAll('[data-bc-tela] *')).forEach(function (el) {
+      if (el.closest('svg') || el.closest('[data-bc-deco]') || el.closest('[data-bc-oculto]')) return;
+      var r = el.getBoundingClientRect(); if (!r.width) return;
+      if (r.right > W.innerWidth + 1 || r.left < -1) {
+        var s = cs(el);
+        if (/flex/.test(s.display)) { el.setAttribute('data-bc-linha', 'coluna'); }
+        else if (/grid/.test(s.display)) { el.setAttribute('data-bc-grade', ''); }
+        else if (el.tagName === 'IMG' || el.tagName === 'VIDEO') { imp(el, 'width', '100%'); imp(el, 'height', 'auto'); }
+        else if (direto(el)) { imp(el, 'overflow-wrap', 'anywhere'); imp(el, 'white-space', 'normal'); }
+        else imp(el, 'width', 'auto');
+      }
+    });
+  }
+
+  // ---------- navegação ----------
+  function navegacao(telas) {
+    if (telas.length < 2 || D.getElementById('bc-nav')) return;
+    var nav = D.createElement('div'); nav.id = 'bc-nav'; nav.setAttribute('aria-hidden', 'true'); nav.setAttribute('data-bc-proprio', '');
+    var trilho = telas.length > 18;
+    if (trilho) { nav.className = 'bc-trilho'; nav.appendChild(D.createElement('b')); }
+    else telas.forEach(function () { nav.appendChild(D.createElement('i')); });
+    D.body.appendChild(nav);
+    var atual = -1;
+    function marcar() {
+      var meio = W.innerHeight * 0.42, idx = 0;
+      for (var i = 0; i < telas.length; i++) { if (telas[i].getBoundingClientRect().top <= meio) idx = i; }
+      if (idx === atual) return; atual = idx;
+      if (trilho) nav.firstChild.style.height = Math.round(((idx + 1) / telas.length) * 100) + '%';
+      else arr(nav.children).forEach(function (d, i) { d.className = i === idx ? 'bc-agora' : ''; });
+    }
+    var parado = null;
+    W.addEventListener('scroll', function () { marcar(); nav.classList.add('bc-rolando'); clearTimeout(parado); parado = setTimeout(function () { nav.classList.remove('bc-rolando'); }, 1400); }, { passive: true });
+    marcar();
+  }
+
+  // botão "Roteiro" do modo apresentador: no celular sai do canto fixo (cobriria o texto) e vai para o fim da página
+  function roteiroNoFim(telas) {
+    var b = D.getElementById('botao-roteiro'); if (!b || !telas.length) return;
+    var ult = telas[telas.length - 1];
+    var box = D.createElement('div'); box.className = 'bc-rodape'; box.setAttribute('data-bc-proprio', '');
+    ult.parentElement.insertBefore(box, ult.nextSibling);
+    box.appendChild(b);
+    b.removeAttribute('data-bc-cromo');
+    ['position', 'top', 'right', 'left', 'bottom', 'opacity', 'z-index'].forEach(function (k) { b.style.removeProperty(k); });
+  }
+
+  // o deck não pode mais passar tela por gesto, roda ou tecla no celular: a página rola
+  function travarGestosDoDeck() {
+    ['touchstart', 'touchmove', 'touchend', 'wheel', 'keydown', 'pointerdown', 'pointermove', 'pointerup', 'mousemove'].forEach(function (ev) {
+      W.addEventListener(ev, function (e) {
+        if (!H.classList.contains('bc-cel')) return;
+        if (ev === 'keydown' && !/^(Arrow|Page|Home|End| |Spacebar)/.test(e.key || '')) return;
+        if (/^pointer/.test(ev) && e.target && e.target.closest && e.target.closest('a,button,input,select,textarea,[role=button],[onclick]')) return;
+        e.stopImmediatePropagation();
+      }, { capture: true, passive: true });
+    });
+  }
+
+  function manterTelasAtivas(telas, ativa) {
+    if (!ativa || !W.MutationObserver) return;
+    var mo = new MutationObserver(function () { telas.forEach(function (t) { if (!t.classList.contains(ativa)) t.classList.add(ativa); }); });
+    telas.forEach(function (t) { mo.observe(t, { attributes: true, attributeFilter: ['class'] }); });
+  }
+
+  // página responsiva (one-pager sem telas): não redesenha, só tira o que vaza para o lado
+  function consertarPagina() {
+    var largo = function () { return Math.max(H.scrollWidth, D.body.scrollWidth) > largura() + 1; };
+    if (!largo()) return;
+    // 1) mídia nunca mais larga que a tela
+    arr(D.body.querySelectorAll('img, video, iframe, canvas, svg, table, pre')).forEach(function (el) { var r = el.getBoundingClientRect(); if (r.right > largura() + 1 && !/fixed/.test(cs(el).position)) { imp(el, 'max-width', '100%'); if (el.tagName !== 'TABLE' && el.tagName !== 'PRE') imp(el, 'height', 'auto'); } });
+    // 2) sobra pequena (até 24 px, sombra ou borda): corta na página; maior que isso fica para a conferência apontar
+    if (largo() && Math.max(H.scrollWidth, D.body.scrollWidth) - largura() <= 24) { imp(H, 'overflow-x', 'hidden'); imp(D.body, 'overflow-x', 'hidden'); }
+  }
+
+  var feito = false;
+  function iniciar() {
+    if (feito || !D.body) return;
+    if (!querCelular()) return;
+    var telas = acharTelas();
+    if (!telas.length) { if (!H.hasAttribute('data-bc-pronto')) H.setAttribute('data-bc-pronto', '0'); consertarPagina(); return; }
+    feito = true;
+    try {
+      telas.forEach(function (t, i) {
+        t.setAttribute('data-bc-tela', String(i + 1));
+        for (var p = t.parentElement; p && p !== D.body && p !== H; p = p.parentElement) p.setAttribute('data-bc-palco', '');
+      });
+      var ativa = classeAtiva(telas);
+      // lê o desenho com todas as telas abertas e sem animação
+      var trava = D.createElement('style'); trava.textContent = '*,*::before,*::after{transition:none!important;animation-play-state:paused!important}';
+      D.head.appendChild(trava);
+      telas.forEach(function (t) { if (ativa) t.classList.add(ativa); });
+      void D.body.offsetHeight;
+      var fundos = analisar(telas, ativa);
+      var logos = logosDaCapa(cabecalhosDasTelas(telas).concat(cromo(telas)));
+      aplicar(telas, ativa, fundos, logos);
+      trava.remove();
+      travarGestosDoDeck();
+      manterTelasAtivas(telas, ativa);
+      navegacao(telas);
+      roteiroNoFim(telas);
+      acabamento(telas);
+      W.addEventListener('load', function () { acabamento(telas); });
+      if (D.fonts && D.fonts.ready) D.fonts.ready.then(function () { acabamento(telas); });
+      setTimeout(function () { acabamento(telas); }, 1600);
+      setTimeout(function () { acabamento(telas); W.scrollTo(0, 0); }, 3200);
+      H.setAttribute('data-bc-pronto', String(telas.length));
+    } catch (e) {
+      // qualquer falha: volta ao deck original, sem a base
+      H.classList.remove('bc-cel');
+      H.setAttribute('data-bc-erro', String(e && e.message || e).slice(0, 160));
+    }
+  }
+
+  // troca de tamanho que cruza o limite: recarrega (desfazer o desenho do celular não vale o risco)
+  var larguraInicial = largura(), estadoInicial = null;
+  W.addEventListener('resize', function () {
+    if (Math.abs(largura() - larguraInicial) < 40) return;
+    clearTimeout(W.__bcRz);
+    W.__bcRz = setTimeout(function () { var agora = largura() < 900; if (estadoInicial !== null && agora !== estadoInicial && !FORCAR) location.reload(); }, 350);
+  });
+  function comecar() { estadoInicial = largura() < 900; iniciar(); }
+  if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', comecar); else comecar();
+  W.addEventListener('load', function () { setTimeout(iniciar, 60); });
+  setTimeout(iniciar, 900);
+})();
+</script>
+</body>
+</html>
